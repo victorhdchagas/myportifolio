@@ -2,6 +2,10 @@ import { db, PersonalInfo, Projects } from 'astro:db'
 
 // Seed personal info
 export default async function seed() {
+  // Clear existing data
+  await db.delete(PersonalInfo)
+  await db.delete(Projects)
+
   await db.insert(PersonalInfo).values({
     id: 1,
     // Hero section
@@ -111,7 +115,7 @@ export default async function seed() {
         'Recursos incluem automação de workflows de aprovação, integração com bureaus de crédito, geração automática de contratos e relatórios gerenciais avançados.',
         'Sistema escalável projetado para suportar milhares de usuários simultâneos, com arquitetura de microserviços preparada para crescimento futuro.',
       ],
-      images: [],
+      images: ['screenshot1.png'],
       tags: ['Vue.js', 'Node.js', 'MySQL', 'Nexcore API'],
       link: 'https://github.com/victorhdchagas',
     },

@@ -33,3 +33,14 @@ src/components/
 └── organisms/ → Complex components with state
 src/tests/     → Mirror component structure
 ```
+
+## Environment Variables
+- **EMAIL_USER**: Gmail address for contact form emails
+- **EMAIL_PASS**: Gmail app password (not regular password)
+- Create `.env` file based on `.env.example`
+
+## Contact Form
+- API endpoint: `POST /api/contact`
+- Sends emails using Nodemailer with Gmail
+- Client-side form validation and submission handling
+- Success/error messages displayed to user

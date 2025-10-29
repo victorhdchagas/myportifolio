@@ -17,10 +17,12 @@
     "@astrojs/react": "^4.4.1",
     "astro": "^5.15.2",
     "astro-icon": "^1.1.5",
+    "nodemailer": "^7.0.10",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.3",
+    "@types/nodemailer": "^7.0.3",
     "puppeteer": "^24.26.1"
   }
 }
