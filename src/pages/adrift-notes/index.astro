@@ -1,5 +1,6 @@
 ---
 import Navbar from '../../components/organisms/Navbar.astro'
+import MobileNav from '../../components/organisms/MobileNav.astro'
 import { ViewTransitions } from 'astro:transitions'
 import { getCollection } from 'astro:content'
 
@@ -9,10 +10,13 @@ const articles = await getCollection('adrift-notes', ({ data }) => {
 })
 
 // Sort by publish date (newest first)
-articles.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+articles.sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+)
 
 const title = 'Adrift Notes'
-const description = 'Technical insights and deep dives into software development, architecture, and emerging technologies.'
+const description =
+  'Technical insights and deep dives into software development, architecture, and emerging technologies.'
 ---
 
 <html lang="en">
@@ -34,18 +38,21 @@ const description = 'Technical insights and deep dives into software development
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://victorhugo.dev/adrift-notes" />
+    <meta
+      property="twitter:url"
+      content="https://victorhugo.dev/adrift-notes"
+    />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-     <link
-       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-       rel="stylesheet"
-     />
-     <ViewTransitions />
-   </head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <ViewTransitions />
+  </head>
   <body>
     <Navbar />
     <main>
@@ -57,322 +64,287 @@ const description = 'Technical insights and deep dives into software development
           </div>
 
           <div class="articles-grid">
-            {articles.map((article) => (
-              <article class="article-card">
-                <div class="article-content">
-                  <div class="article-meta">
-                    <time class="article-date" datetime={article.data.publishDate.toISOString()}>
-                      {article.data.publishDate.toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </time>
-                    {article.data.tags && article.data.tags.length > 0 && (
-                      <div class="article-tags">
-                        {article.data.tags.map((tag) => (
-                          <span class="tag">{tag}</span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+            {
+              articles.map((article) => (
+                <article class="article-card">
+                  <div class="article-content">
+                    <div class="article-meta">
+                      <time
+                        class="article-date"
+                        datetime={article.data.publishDate.toISOString()}
+                      >
+                        {article.data.publishDate.toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </time>
+                      {article.data.tags && article.data.tags.length > 0 && (
+                        <div class="article-tags">
+                          {article.data.tags.map((tag) => (
+                            <span class="tag">{tag}</span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
 
-                  <h2 class="article-title">
-                    <a href={`/adrift-notes/${article.slug}`} class="article-link">
-                      {article.data.title}
+                    <h2 class="article-title">
+                      <a
+                        href={`/adrift-notes/${article.slug}`}
+                        class="article-link"
+                      >
+                        {article.data.title}
+                      </a>
+                    </h2>
+
+                    <p class="article-description">
+                      {article.data.description}
+                    </p>
+
+                    <a href={`/adrift-notes/${article.slug}`} class="read-more">
+                      Read Article →
                     </a>
-                  </h2>
-
-                  <p class="article-description">{article.data.description}</p>
-
-                  <a href={`/adrift-notes/${article.slug}`} class="read-more">
-                    Read Article →
-                  </a>
-                </div>
-              </article>
-            ))}
+                  </div>
+                </article>
+              ))
+            }
           </div>
 
-          {articles.length === 0 && (
-            <div class="no-articles">
-              <p>No articles published yet. Check back soon!</p>
-            </div>
-          )}
+          {
+            articles.length === 0 && (
+              <div class="no-articles">
+                <p>No articles published yet. Check back soon!</p>
+              </div>
+            )
+          }
         </div>
       </section>
     </main>
 
-    <!-- Fixed Navigation Menu -->
-    <div
-      class="fixed bottom-4 right-4 gap-1 flex flex-col transition-all duration-500 opacity-100"
-      id="navmenu"
-    >
-      <div class="flex flex-row gap-1">
-        <a
-          class="w-14 h-14 rounded-tl-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
-          href="/#hero"
-          title="Home">🏠</a
-        >
-        <a
-          class="w-14 h-14 rounded-tr-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
-          href="/#projects"
-          title="Projects">💼</a
-        >
-      </div>
-      <div class="flex flex-row gap-1">
-        <a
-          class="w-14 h-14 rounded-bl-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
-          href="/#about"
-          title="About">👤</a
-        >
-        <a
-          class="w-14 h-14 rounded-br-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
-          href="/#contact"
-          title="Contact">📧</a
-        >
-      </div>
-    </div>
-  </body>
-</html>
+    <MobileNav />
+  </body><style>
+    :root {
+      /* Light theme colors */
+      --bg-primary: oklch(100% 0 0);
+      --bg-secondary: oklch(96% 0.01 45);
+      --bg-tertiary: oklch(92% 0.01 45);
+      --text-primary: oklch(20% 0 0);
+      --text-secondary: oklch(45% 0 0);
+      --text-accent: oklch(65% 0.2 45);
+      --border-color: oklch(92% 0.01 45);
+      --shadow-color: oklch(0% 0 0 / 0.1);
+    }
 
-<style>
-  :root {
-    /* Light theme colors */
-    --bg-primary: oklch(100% 0 0);
-    --bg-secondary: oklch(96% 0.01 45);
-    --bg-tertiary: oklch(92% 0.01 45);
-    --text-primary: oklch(20% 0 0);
-    --text-secondary: oklch(45% 0 0);
-    --text-accent: oklch(65% 0.2 45);
-    --border-color: oklch(92% 0.01 45);
-    --shadow-color: oklch(0% 0 0 / 0.1);
-  }
+    [data-theme='dark'] {
+      /* Dark theme colors */
+      --bg-primary: oklch(8% 0 0);
+      --bg-secondary: oklch(10% 0 0);
+      --bg-tertiary: oklch(15% 0 0);
+      --text-primary: oklch(85% 0 0);
+      --text-secondary: oklch(70% 0 0);
+      --text-accent: oklch(75% 0.2 45);
+      --border-color: oklch(40% 0 0);
+      --shadow-color: oklch(30% 0 0 / 1.6);
+    }
 
-  [data-theme='dark'] {
-    /* Dark theme colors */
-    --bg-primary: oklch(8% 0 0);
-    --bg-secondary: oklch(10% 0 0);
-    --bg-tertiary: oklch(15% 0 0);
-    --text-primary: oklch(85% 0 0);
-    --text-secondary: oklch(70% 0 0);
-    --text-accent: oklch(75% 0.2 45);
-    --border-color: oklch(40% 0 0);
-    --shadow-color: oklch(30% 0 0 / 1.6);
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  html {
-    scroll-behavior: smooth;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  * {
-    box-sizing: border-box;
-  }
+    body {
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+      font-family:
+        'Inter',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        sans-serif;
+    }
 
-  body {
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
-    font-family:
-      'Inter',
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Roboto,
-      sans-serif;
-  }
+    /* Theme transition for all elements */
+    * {
+      transition:
+        color 0.3s ease,
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
 
-  /* Theme transition for all elements */
-  * {
-    transition:
-      color 0.3s ease,
-      background-color 0.3s ease,
-      border-color 0.3s ease,
-      box-shadow 0.3s ease;
-  }
+    .adrift-notes {
+      padding: 5rem 0;
+      background: var(--bg-secondary);
+      min-height: 100vh;
+    }
 
-  .adrift-notes {
-    padding: 5rem 0;
-    background: var(--bg-secondary);
-    min-height: 100vh;
-  }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
 
-  .section-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .section-title {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-
-  .section-description {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-
-  .articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 2rem;
-  }
-
-  .article-card {
-    background: var(--bg-primary);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px var(--shadow-color);
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
-  }
-
-  .article-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px var(--shadow-color);
-  }
-
-  .article-content {
-    padding: 2rem;
-  }
-
-  .article-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .article-date {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-  }
-
-  .article-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    background: var(--bg-tertiary);
-    color: var(--text-secondary);
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    border: 1px solid var(--border-color);
-  }
-
-  .article-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
-
-  .article-link {
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  .article-link:hover {
-    color: var(--text-accent);
-  }
-
-  .article-description {
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  .read-more {
-    display: inline-flex;
-    align-items: center;
-    color: var(--text-accent);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: color 0.2s ease;
-  }
-
-  .read-more:hover {
-    color: oklch(55% 0.2 45);
-  }
-
-  .no-articles {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--text-secondary);
-  }
-
-  .no-articles p {
-    font-size: 1.1rem;
-  }
-
-  /* Fixed navigation menu styles */
-  #navmenu {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    z-index: 1000;
-  }
-
-  #navmenu a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  @media (max-width: 768px) {
     .section-title {
-      font-size: 2.5rem;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.2;
     }
 
     .section-description {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
 
     .articles-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+
+    .article-card {
+      background: var(--bg-primary);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px var(--shadow-color);
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px var(--shadow-color);
     }
 
     .article-content {
-      padding: 1.5rem;
-    }
-
-    .article-title {
-      font-size: 1.3rem;
+      padding: 2rem;
     }
 
     .article-meta {
-      flex-direction: column;
+      display: flex;
+      justify-content: space-between;
       align-items: flex-start;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .article-date {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
       gap: 0.5rem;
     }
-  }
-</style>
+
+    .tag {
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+    }
+
+    .article-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .article-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .article-link:hover {
+      color: var(--text-accent);
+    }
+
+    .article-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      color: var(--text-accent);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .read-more:hover {
+      color: oklch(55% 0.2 45);
+    }
+
+    .no-articles {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-secondary);
+    }
+
+    .no-articles p {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2.5rem;
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+      }
+
+      .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .article-content {
+        padding: 1.5rem;
+      }
+
+      .article-title {
+        font-size: 1.3rem;
+      }
+
+      .article-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</html>

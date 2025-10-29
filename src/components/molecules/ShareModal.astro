@@ -7,6 +7,8 @@ interface Props {
 const { title, url } = Astro.props;
 ---
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 <div id="share-modal" class="share-modal-overlay" style="display: none;">
   <div class="share-modal">
     <div class="share-modal-header">
@@ -50,6 +52,8 @@ const { title, url } = Astro.props;
 </div>
 
 <script define:vars={{ title, url }}>
+  import Toastify from 'https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.js';
+
   window.openShareModal = function() {
     const overlay = document.getElementById('share-modal');
     overlay.style.display = 'flex';
@@ -64,10 +68,24 @@ const { title, url } = Astro.props;
 
   window.copyToClipboard = function() {
     navigator.clipboard.writeText(url).then(() => {
-      alert('Link copiado para a área de transferência!');
+      Toastify({
+        text: 'Link copiado para a área de transferência!',
+        duration: 3000,
+        gravity: 'bottom',
+        position: 'center',
+        backgroundColor: 'var(--text-accent)',
+        stopOnFocus: true,
+      }).showToast();
     }).catch(err => {
       console.error('Erro ao copiar: ', err);
-      alert('Erro ao copiar o link.');
+      Toastify({
+        text: 'Erro ao copiar o link.',
+        duration: 3000,
+        gravity: 'bottom',
+        position: 'center',
+        backgroundColor: 'red',
+        stopOnFocus: true,
+      }).showToast();
     });
   };
 
@@ -84,10 +102,24 @@ const { title, url } = Astro.props;
 
   window.shareOnDiscord = function() {
     navigator.clipboard.writeText(url).then(() => {
-      alert('Link copiado! Cole no Discord.');
+      Toastify({
+        text: 'Link copiado! Cole no Discord.',
+        duration: 3000,
+        gravity: 'bottom',
+        position: 'center',
+        backgroundColor: 'var(--text-accent)',
+        stopOnFocus: true,
+      }).showToast();
     }).catch(err => {
       console.error('Erro ao copiar: ', err);
-      alert('Erro ao copiar o link.');
+      Toastify({
+        text: 'Erro ao copiar o link.',
+        duration: 3000,
+        gravity: 'bottom',
+        position: 'center',
+        backgroundColor: 'red',
+        stopOnFocus: true,
+      }).showToast();
     });
   };
 

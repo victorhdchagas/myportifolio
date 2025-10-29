@@ -1,6 +1,6 @@
 ---
-// src/pages/index.astro
 import Navbar from '../components/organisms/Navbar.astro'
+import MobileNav from '../components/organisms/MobileNav.astro'
 import Hero from '../components/organisms/Hero.astro'
 import Projects from '../components/organisms/Projects.astro'
 import About from '../components/organisms/About.astro'
@@ -53,36 +53,9 @@ import Contact from '../components/organisms/Contact.astro'
       <Contact id="contact" />
     </main>
 
-    <!-- Fixed Navigation Menu (like previous portfolio) -->
-    <div
-      class="fixed bottom-4 right-4 gap-1 flex flex-col transition-all duration-500 opacity-100"
-      id="navmenu"
-    >
-      <div class="flex flex-row gap-1">
-        <a
-          class="w-14 h-14 rounded-tl-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
-          href="#hero"
-          title="Home">🏠</a
-        >
-        <a
-          class="w-14 h-14 rounded-tr-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
-          href="#projects"
-          title="Projects">💼</a
-        >
-      </div>
-      <div class="flex flex-row gap-1">
-        <a
-          class="w-14 h-14 rounded-bl-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
-          href="#about"
-          title="About">👤</a
-        >
-        <a
-          class="w-14 h-14 rounded-br-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
-          href="#contact"
-          title="Contact">📧</a
-        >
-      </div>
-    </div>
+    <MobileNav />
+
+
   </body>
 </html>
 

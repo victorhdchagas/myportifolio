@@ -1,0 +1,93 @@
+---
+import { Icon } from 'astro-icon/components'
+// Mobile Navigation Component
+---
+
+<nav class="mobile-nav">
+  <a href="/#hero" class="nav-item" title="Home">
+    <span class="icon"> <Icon name="mdi:home" /></span>
+    <span class="label">Home</span>
+  </a>
+  <a href="/#projects" class="nav-item" title="Projects">
+    <span class="icon"> <Icon name="mdi:robot-happy" /></span>
+    <span class="label">Projects</span>
+  </a>
+  <a href="/adrift-notes" class="nav-item" title="Adrift Notes">
+    <span class="icon"> <Icon name="streamline-freehand:notes-quill" /></span>
+    <span class="label">Notes</span>
+  </a>
+  <a href="/#about" class="nav-item" title="About">
+    <span class="icon"> <Icon name="mdi:info" /></span>
+    <span class="label">About</span>
+  </a>
+  <a href="/#contact" class="nav-item" title="Contact">
+    <span class="icon"> <Icon name="mdi:email" /></span>
+    <span class="label">Contact</span>
+  </a>
+</nav>
+
+<style>
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+    padding: 0.25rem;
+    border-radius: 8px;
+    min-width: 50px;
+    flex: 1;
+    gap: 0.25rem;
+  }
+
+  .nav-item:hover,
+  .nav-item:active {
+    color: var(--text-accent);
+    background: var(--bg-secondary);
+  }
+
+  .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+    /* margin-bottom: 0.125rem; */
+  }
+
+  .label {
+    font-size: 0.625rem;
+    font-weight: 500;
+    font-size: 0.75rem;
+  }
+
+  /* Hide on desktop */
+  @media (min-width: 768px) {
+    .mobile-nav {
+      display: none;
+    }
+  }
+
+  /* Dark theme */
+  [data-theme='dark'] .mobile-nav {
+    background: rgba(10, 10, 10, 0.95);
+    border-top-color: rgba(120, 113, 108, 0.2);
+  }
+</style>
