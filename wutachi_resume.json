@@ -1,0 +1,458 @@
+{
+  "basics": {
+    "name": "Victor Hugo Damascena das Chagas",
+    "headline": "",
+    "email": "victorhdchagas@live.com",
+    "phone": "(21) 99563-4014",
+    "location": "Rio de Janeiro",
+    "url": {
+      "label": "",
+      "href": ""
+    },
+    "customFields": [],
+    "picture": {
+      "url": "",
+      "size": 64,
+      "aspectRatio": 1,
+      "borderRadius": 9999,
+      "effects": {
+        "hidden": false,
+        "border": false,
+        "grayscale": false
+      }
+    }
+  },
+  "sections": {
+    "summary": {
+      "name": "Summary",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "summary",
+      "content": "<p>Com mais de 13 anos de experiência em desenvolvimento de tecnologia, tenho expertise em diversas linguagens de programação, incluindo Java, C#, <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://VB.Net\">VB.Net</a>, Delphi e Node.js.<br> Atuei em projetos utilizando metodologias ágeis como SCRUM, utilizando os princípios SOLID de desenvolvimento de software.</p>"
+    },
+    "awards": {
+      "name": "Awards",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "awards",
+      "items": []
+    },
+    "certifications": {
+      "name": "Certifications",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "certifications",
+      "items": []
+    },
+    "education": {
+      "name": "Education",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "education",
+      "items": [
+        {
+          "id": "cw6m58newmwut08wcp85yd2f",
+          "visible": true,
+          "institution": "SEO",
+          "studyType": "",
+          "area": "DankiCode",
+          "score": "",
+          "date": "In progress",
+          "summary": "<p></p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "ac5j6l6mhd5mjv18336p5ja7",
+          "visible": true,
+          "institution": "Curso de Docker",
+          "studyType": "",
+          "area": "Udemy",
+          "score": "",
+          "date": "2022-2022",
+          "summary": "<p>Configuração de imagens e containers no Docker</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "j2r7woxg0ert7taq0cuo02ev",
+          "visible": true,
+          "institution": "Curso de React JS",
+          "studyType": "",
+          "area": "Dankicode",
+          "score": "",
+          "date": "2022-2022",
+          "summary": "<p>Criação de components, hooks e contexts com ReactJs</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "ow1wup0h21bg667qhyq2h3bo",
+          "visible": true,
+          "institution": "Curso de Python Completo",
+          "studyType": "",
+          "area": "DankiCode",
+          "score": "",
+          "date": "2021-2021",
+          "summary": "<p>Aprendizagem da linguagem Python.</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "gyhe85wgf7qhi2tmf8tz3dq9",
+          "visible": true,
+          "institution": "Uninter",
+          "studyType": "Tecnólogo",
+          "area": "Análise e desenvolvimento",
+          "score": "",
+          "date": "2022-2026",
+          "summary": "",
+          "url": {
+            "label": "",
+            "href": "https://www.uninter.com/"
+          }
+        },
+        {
+          "id": "dvqqsvkfgqtpr7qwaina7ljq",
+          "visible": true,
+          "institution": "COTI Informática",
+          "studyType": "",
+          "area": "Java",
+          "score": "",
+          "date": "2009-2010",
+          "summary": "<p><em>Java, Servlets, JSP, Orientação a objetos</em></p>",
+          "url": {
+            "label": "",
+            "href": "https://www.cotiinformatica.com.br/"
+          }
+        }
+      ]
+    },
+    "experience": {
+      "name": "Experience",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "experience",
+      "items": [
+        {
+          "id": "tf02xfftlsi4ix3r7xxuglpu",
+          "visible": true,
+          "company": "Roletronic",
+          "position": "Analista desenvolvedor fullstack pleno",
+          "location": "",
+          "date": "Atual",
+          "summary": "<p><strong>Sobre</strong></p><p>Sistema focado em divulgação de artistas de música eletrônica.</p><p>Objetivo inicial da plataforma é ser uma alternativa mais interessante aos artistas que o Linktree.</p><p><strong>Tecnologias</strong></p><p>NextJS, NestJS, Postgree</p>",
+          "url": {
+            "label": "",
+            "href": "https://roletronic.com"
+          }
+        },
+        {
+          "id": "ooevbfjprq6m9hmqkj1qphme",
+          "visible": true,
+          "company": "Setor 8",
+          "position": "Analista desenvolvedor fullstack Pleno",
+          "location": "",
+          "date": "2017-2022",
+          "summary": "<p><strong>Sobre</strong></p><p>Desenvolvi um CRM para empréstimos consignados. O Sistema contava com integração da Nexcore para realizar ligações e gerenciar através do sistema.</p><p><strong>Tecnologias</strong><br>VueJS, NodeJS, MySql</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "a57jwr814504l05jnk112tfs",
+          "visible": true,
+          "company": "TO Brasil",
+          "position": "Analista desenvolvedor",
+          "location": "",
+          "date": "2014-2016",
+          "summary": "<p><strong>Sobre</strong></p><p>Sistema Mobile com funcionalidade de verificação das músicas usadas no estabelecimento para notificação no ECAD.<br></p><p>Tecnologias:<br>C#, Cordova/Phonegap, SQLServer</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "bw9x6u85amno4yvzzq6nfdm7",
+          "visible": true,
+          "company": "NewChoice",
+          "position": "Desenvolvedor Junior",
+          "location": "",
+          "date": "2013-2013",
+          "summary": "<p><strong>Sobre</strong></p><p>Projeto integrado de Pontos de vendas (PDVs)</p><p>Tecnologias utilizadas:</p><p><em>VB2010, SQLServer 2008, JQuery</em></p>",
+          "url": {
+            "label": "",
+            "href": "https://newchoice.com.br/"
+          }
+        },
+        {
+          "id": "y0v8dbf7wz3jblemxidxqdrq",
+          "visible": true,
+          "company": "InfoCeasa",
+          "position": "Analista e desenvolvedor Junior",
+          "location": "",
+          "date": "2012-2012",
+          "summary": "<p>Desenvolvi uma ferramenta mobile para os funcionarios do CEASA conseguir realizar as vendas sem necessitar ir ao ponto de venda.</p><p>Através dessa ferramenta os mesmos conseguiam ver relatórios analíticos e sintéticos sobre venda as vendas.</p><p></p><p>Java 6, Firebird,  JS</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "clkulqc79e4xye57dh24ax92",
+          "visible": true,
+          "company": "Sofis",
+          "position": "Analista e desenvolvedor Junior",
+          "location": "",
+          "date": "2009-2011",
+          "summary": "<p><strong>Sobre</strong></p><p>Atuei em um sistema ERP, respeitando os padrões da ANS  e FEBRABAN</p><p>Sistema de gestão de insumos integrado com todas os diversos setores do HEMORIO.</p><p>Boa parte da lógica era tratada através de stored procedures do banco de dados.</p><p></p><p><strong>Tecnologias</strong>:<br>VB, SQLServer 2005, Ajaxtoolkit</p>",
+          "url": {
+            "label": "",
+            "href": "https://www.sofis.com.br/"
+          }
+        }
+      ]
+    },
+    "volunteer": {
+      "name": "Volunteering",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "volunteer",
+      "items": []
+    },
+    "interests": {
+      "name": "Interests",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "interests",
+      "items": []
+    },
+    "languages": {
+      "name": "Languages",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "languages",
+      "items": []
+    },
+    "profiles": {
+      "name": "Profiles",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": false,
+      "id": "profiles",
+      "items": [
+        {
+          "id": "oix9ftcp853qgzrvxxz7nu9u",
+          "visible": false,
+          "network": "LinkedIn",
+          "username": "victorhdchagas",
+          "icon": "",
+          "url": {
+            "label": "",
+            "href": "https://www.linkedin.com/in/victorhdchagas/"
+          }
+        },
+        {
+          "id": "cnb5kd2ew36zlbjovamsw3a7",
+          "visible": false,
+          "network": "Github",
+          "username": "victorhdchagas",
+          "icon": "",
+          "url": {
+            "label": "",
+            "href": "https://github.com/victorhdchagas"
+          }
+        },
+        {
+          "id": "o0o2xutobj3nktjrx7uxr282",
+          "visible": false,
+          "network": "Contato",
+          "username": "Whatsapp",
+          "icon": "",
+          "url": {
+            "label": "",
+            "href": "https://wa.me/5521995634014"
+          }
+        }
+      ]
+    },
+    "projects": {
+      "name": "Projects",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "projects",
+      "items": []
+    },
+    "publications": {
+      "name": "Publications",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "publications",
+      "items": []
+    },
+    "references": {
+      "name": "References",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "references",
+      "items": []
+    },
+    "skills": {
+      "name": "Skills",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": false,
+      "id": "skills",
+      "items": [
+        {
+          "id": "g0vewz76ss3rnwo8ofvnghr1",
+          "visible": true,
+          "name": "Frontend",
+          "description": "Interface Web",
+          "level": 4,
+          "keywords": [
+            "React",
+            "Vue",
+            "Angular"
+          ]
+        },
+        {
+          "id": "sy7i8t66qyt729pn8gb8rozk",
+          "visible": true,
+          "name": "Backend",
+          "description": "API",
+          "level": 3,
+          "keywords": [
+            "NodeJs",
+            "C#",
+            "Nestjs",
+            "Java"
+          ]
+        },
+        {
+          "id": "z2b1zvzfvdmfa43rgeyzwxp0",
+          "visible": true,
+          "name": "Devops",
+          "description": "",
+          "level": 2,
+          "keywords": [
+            "Github Actions",
+            "Grafana",
+            "Docker",
+            "K8S (low)"
+          ]
+        },
+        {
+          "id": "n79z3q72p9thhoie4inburay",
+          "visible": true,
+          "name": "Soft Skill ",
+          "description": "Resiliência",
+          "level": 3,
+          "keywords": []
+        },
+        {
+          "id": "qwrk42vphtr5nx03dpoez77o",
+          "visible": true,
+          "name": "Soft Skill",
+          "description": "Concentração",
+          "level": 4,
+          "keywords": []
+        },
+        {
+          "id": "alklhyiz89hzp5ikway5gyqa",
+          "visible": true,
+          "name": "Soft Skill",
+          "description": "Trabalho em equipe",
+          "level": 4,
+          "keywords": []
+        },
+        {
+          "id": "dz7r7mvqdrbb92we575crb3l",
+          "visible": true,
+          "name": "Soft Skill",
+          "description": "Paciência",
+          "level": 5,
+          "keywords": []
+        }
+      ]
+    },
+    "custom": {}
+  },
+  "metadata": {
+    "template": "bronzor",
+    "layout": [
+      [
+        [
+          "profiles",
+          "summary",
+          "experience",
+          "education",
+          "projects",
+          "volunteer",
+          "references"
+        ],
+        [
+          "skills",
+          "interests",
+          "certifications",
+          "awards",
+          "publications",
+          "languages"
+        ]
+      ]
+    ],
+    "css": {
+      "value": "* {\n\toutline: 1px solid #000;\n\toutline-offset: 4px;\n}",
+      "visible": false
+    },
+    "page": {
+      "margin": 18,
+      "format": "a4",
+      "options": {
+        "breakLine": true,
+        "pageNumbers": true
+      }
+    },
+    "theme": {
+      "background": "#fff",
+      "text": "#111",
+      "primary": "#333"
+    },
+    "typography": {
+      "font": {
+        "family": "IBM Plex Serif",
+        "subset": "latin",
+        "variants": [
+          "regular",
+          "italic",
+          "600"
+        ],
+        "size": 14
+      },
+      "lineHeight": 1.5,
+      "hideIcons": false,
+      "underlineLinks": true
+    },
+    "notes": ""
+  }
+}

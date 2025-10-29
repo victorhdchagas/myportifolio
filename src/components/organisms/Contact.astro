@@ -1,0 +1,248 @@
+---
+// src/components/organisms/Contact.astro
+import Card from '../atoms/Card.astro'
+import { db, PersonalInfo } from 'astro:db'
+
+export interface Props {
+  id?: string
+}
+
+const { id } = Astro.props
+
+// Query personal info from database
+const personalInfo = await db.select().from(PersonalInfo).limit(1)
+const data = personalInfo[0]
+
+const title = data?.contactTitle || 'Get In Touch'
+const subtitle = data?.contactSubtitle || "I'd love to hear from you. Send me a message and I'll respond as soon as possible."
+const email = data?.contactEmail || 'victorhdchagas@live.com'
+const linkedin = data?.contactLinkedin || 'https://www.linkedin.com/in/victorhdchagas/'
+const github = data?.contactGithub || 'https://github.com/victorhdchagas'
+---
+
+<section class="contact" id={id}>
+  <div class="container">
+    <h2 class="section-title">{title}</h2>
+    <p class="section-subtitle">{subtitle}</p>
+
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3>Let's Connect</h3>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div>
+              <strong>Email</strong>
+              <a href={`mailto:${email}`}>{email}</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💼</div>
+            <div>
+              <strong>LinkedIn</strong>
+              <a href={linkedin} target="_blank" rel="noopener noreferrer"
+                >linkedin.com/in/wutachi</a
+              >
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🐙</div>
+            <div>
+              <strong>GitHub</strong>
+              <a href={github} target="_blank" rel="noopener noreferrer"
+                >github.com/wutachi</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Card shadow="inset" class="contact-form">
+        <form method="POST" action="/api/contact">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </Card>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+    scroll-margin-top: 70px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+  }
+
+  .contact-item strong {
+    display: block;
+    color: #333;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-item a {
+    color: oklch(65% 0.2 45);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-item a:hover {
+    color: oklch(55% 0.2 45);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: oklch(65% 0.2 45);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .submit-btn {
+    background: linear-gradient(
+      135deg,
+      oklch(65% 0.2 45) 0%,
+      oklch(75% 0.2 45) 100%
+    );
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: transform 0.2s ease;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(
+      135deg,
+      oklch(55% 0.2 45) 0%,
+      oklch(70% 0.2 45) 100%
+    );
+  }
+
+  @media (max-width: 768px) {
+    .contact-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .contact-form {
+      /* Card component handles background, padding, and shadow */
+    }
+
+    .contact-form form {
+      margin: 0; /* Remove default form margin */
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>

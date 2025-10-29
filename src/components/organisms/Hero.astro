@@ -1,0 +1,116 @@
+---
+// src/components/organisms/Hero.astro
+import { db, PersonalInfo } from 'astro:db'
+
+export interface Props {
+  id?: string
+}
+
+const { id } = Astro.props
+
+// Query personal info from database
+const personalInfo = await db.select().from(PersonalInfo).limit(1)
+const data = personalInfo[0]
+
+const title = data?.heroTitle || 'Victor Hugo'
+const subtitle =
+  data?.heroSubtitle ||
+  'Fullstack Developer with 13+ years of experience in Java, C#, Node.js, and modern web technologies'
+const ctaText = data?.heroCtaText || 'View My Work'
+---
+
+<section class="hero" id={id}>
+  <div class="hero-content">
+    <h1 class="hero-title">{title}</h1>
+    <p class="hero-subtitle">{subtitle}</p>
+    <button class="hero-cta" id="hero-cta">
+      {ctaText}
+    </button>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      45deg,
+      oklch(40% 0.2 45) 0%,
+      oklch(75% 0.2 45) 60%
+    );
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    scroll-margin-top: 70px;
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    background: var(--bg-primary);
+    color: oklch(65% 0.2 45);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    background: oklch(95% 0.05 45);
+  }
+
+  [data-theme='dark'] .hero-cta {
+    background: var(--bg-tertiary);
+    color: oklch(75% 0.2 45);
+  }
+
+  [data-theme='dark'] .hero-cta:hover {
+    background: oklch(20% 0 0);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+
+<script>
+  // Handle CTA button click
+  const ctaButton = document.getElementById('hero-cta')
+  if (ctaButton) {
+    ctaButton.addEventListener('click', () => {
+      // Scroll to projects section
+      const projectsSection = document.getElementById('projects')
+      if (projectsSection) {
+        projectsSection.scrollIntoView({ behavior: 'smooth' })
+      }
+    })
+  }
+</script>

@@ -1,0 +1,160 @@
+---
+// src/components/organisms/Navbar.astro
+import ThemeToggle from '../molecules/ThemeToggle.astro'
+
+export interface Props {
+  brand?: string
+}
+
+const { brand = 'VHT' } = Astro.props
+---
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a href="/#hero">{brand}</a>
+    </div>
+
+    <div class="nav-links">
+      <a href="#hero" class="nav-link">Home</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+      <ThemeToggle />
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: oklch(100% 0 0 / 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid oklch(65% 0.2 45 / 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+
+  [data-theme='dark'] .navbar {
+    background: oklch(10% 0 0 / 0.95);
+    border-bottom: 1px solid oklch(75% 0.2 45 / 0.2);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  .nav-brand a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: oklch(65% 0.2 45);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .nav-brand a:hover {
+    color: oklch(55% 0.2 45);
+  }
+
+  [data-theme='dark'] .nav-brand a {
+    color: oklch(75% 0.2 45);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: oklch(20% 0 0);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: oklch(65% 0.2 45);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: oklch(65% 0.2 45);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  [data-theme='dark'] .nav-link {
+    color: oklch(85% 0 0);
+  }
+
+  [data-theme='dark'] .nav-link:hover {
+    color: oklch(75% 0.2 45);
+  }
+
+  [data-theme='dark'] .nav-link::after {
+    background: oklch(75% 0.2 45);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .nav-container {
+      padding: 0 1rem;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .nav-brand a {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  // Smooth scrolling for navigation links
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link')
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault()
+        const targetId = link.getAttribute('href')?.substring(1)
+        const targetElement = document.getElementById(targetId || '')
+
+        if (targetElement) {
+          const offsetTop = targetElement.offsetTop - 70 // Account for fixed navbar
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth',
+          })
+        }
+      })
+    })
+  })
+</script>

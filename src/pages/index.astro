@@ -1,16 +1,235 @@
 ---
-
+// src/pages/index.astro
+import Navbar from '../components/organisms/Navbar.astro'
+import Hero from '../components/organisms/Hero.astro'
+import Projects from '../components/organisms/Projects.astro'
+import About from '../components/organisms/About.astro'
+import Contact from '../components/organisms/Contact.astro'
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Victor Hugo - Fullstack Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Victor Hugo Damascena das Chagas, a fullstack developer with 13+ years of experience in Java, C#, Node.js, and modern web technologies."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Navbar />
+    <main>
+      <Hero id="hero" />
+      <Projects id="projects" />
+      <About id="about" />
+      <Contact id="contact" />
+    </main>
+
+    <!-- Fixed Navigation Menu (like previous portfolio) -->
+    <div
+      class="fixed bottom-4 right-4 gap-1 flex flex-col transition-all duration-500 opacity-100"
+      id="navmenu"
+    >
+      <div class="flex flex-row gap-1">
+        <a
+          class="w-14 h-14 rounded-tl-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
+          href="#hero"
+          title="Home">🏠</a
+        >
+        <a
+          class="w-14 h-14 rounded-tr-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
+          href="#projects"
+          title="Projects">💼</a
+        >
+      </div>
+      <div class="flex flex-row gap-1">
+        <a
+          class="w-14 h-14 rounded-bl-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
+          href="#about"
+          title="About">👤</a
+        >
+        <a
+          class="w-14 h-14 rounded-br-2xl text-white bg-orange-600 hover:bg-orange-500 flex justify-center items-center transition-colors"
+          href="#contact"
+          title="Contact">📧</a
+        >
+      </div>
+    </div>
+  </body>
 </html>
+
+<style>
+  :root {
+    /* Light theme colors */
+    --bg-primary: oklch(100% 0 0);
+    --bg-secondary: oklch(96% 0.01 45);
+    --bg-tertiary: oklch(92% 0.01 45);
+    --text-primary: oklch(20% 0 0);
+    --text-secondary: oklch(45% 0 0);
+    --text-accent: oklch(65% 0.2 45);
+    --border-color: oklch(92% 0.01 45);
+    --shadow-color: oklch(0% 0 0 / 0.1);
+  }
+
+  [data-theme='dark'] {
+    /* Dark theme colors */
+    --bg-primary: oklch(8% 0 0);
+    --bg-secondary: oklch(10% 0 0);
+    --bg-tertiary: oklch(15% 0 0);
+    --text-primary: oklch(85% 0 0);
+    --text-secondary: oklch(70% 0 0);
+    --text-accent: oklch(75% 0.2 45);
+    --border-color: oklch(40% 0 0);
+    --shadow-color: oklch(30% 0 0 / 1.6);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  main {
+    font-family:
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    font-family:
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
+  }
+
+  /* Theme transition for all elements */
+  * {
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  /* Theme-aware section backgrounds */
+  .hero {
+    background: linear-gradient(
+      135deg,
+      oklch(58% 0.18 45) 0%,
+      oklch(68% 0.18 45) 100%
+    );
+  }
+
+  [data-theme='dark'] .hero {
+    background: linear-gradient(
+      135deg,
+      oklch(48% 0.18 45) 0%,
+      oklch(58% 0.18 45) 100%
+    );
+  }
+
+  .projects {
+    background: var(--bg-secondary);
+  }
+
+  .about {
+    background: var(--bg-primary);
+  }
+
+  .contact {
+    background: var(--bg-secondary);
+  }
+
+  /* Theme-aware component styles */
+  .project-card {
+    background: var(--bg-primary);
+    box-shadow: 0 4px 6px var(--shadow-color);
+  }
+
+  .contact-form {
+    background: var(--bg-primary);
+    box-shadow: 0 4px 6px var(--shadow-color);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--text-accent);
+  }
+
+  .hero-cta {
+    background: var(--bg-primary);
+    color: oklch(65% 0.2 45);
+  }
+
+  .hero-cta:hover {
+    background: oklch(95% 0.05 45);
+  }
+
+  [data-theme='dark'] .hero-cta {
+    background: var(--bg-tertiary);
+    color: oklch(75% 0.2 45);
+  }
+
+  [data-theme='dark'] .hero-cta:hover {
+    background: oklch(20% 0 0);
+  }
+
+  .tech-tag {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+  }
+
+  .project-description,
+  .about-bio,
+  .section-subtitle {
+    color: var(--text-secondary);
+  }
+
+  .section-title,
+  .project-title,
+  .about-text h3,
+  .contact-info h3 {
+    color: var(--text-primary);
+  }
+
+  .detail-item strong {
+    color: var(--text-accent);
+  }
+
+  .skills-section h3 {
+    color: var(--text-primary);
+  }
+</style>
