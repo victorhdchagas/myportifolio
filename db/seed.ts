@@ -1,10 +1,11 @@
-import { db, PersonalInfo, Projects } from 'astro:db'
+import { db, PersonalInfo, Projects, Authors } from 'astro:db'
 
 // Seed personal info
 export default async function seed() {
   // Clear existing data
   await db.delete(PersonalInfo)
   await db.delete(Projects)
+  await db.delete(Authors)
 
   await db.insert(PersonalInfo).values({
     id: 1,
@@ -40,10 +41,25 @@ export default async function seed() {
     contactTitle: 'Get In Touch',
     contactSubtitle:
       "I'd love to hear from you. Send me a message and I'll respond as soon as possible.",
-    contactEmail: 'victorhdchagas@live.com',
+    contactEmail: 'contato@victorhugo.info',
     contactLinkedin: 'https://www.linkedin.com/in/victorhdchagas/',
     contactGithub: 'https://github.com/victorhdchagas',
-    contactNostr: 'f1597634eb562ad3696625eb46d488f56755ba4a6cea2a2de9610c60c6d40bf4',
+    contactNostr:
+      'f1597634eb562ad3696625eb46d488f56755ba4a6cea2a2de9610c60c6d40bf4',
+  })
+
+  // Seed authors
+  await db.insert(Authors).values({
+    id: 1,
+    name: 'Victor Hugo',
+    bio: 'Analista, Desenvolvedor, Gamer... Apaixonado por criar soluções web escaláveis.',
+    avatar: 'https://victorhugo.info/pictures/avatar.jpeg',
+    email: 'contato@victorhugo.info',
+    website: 'https://victorhugo.info',
+    twitter: 'https://twitter.com/victorhugof',
+    linkedin: 'https://www.linkedin.com/in/victorhdchagas/',
+    github: 'https://github.com/victorhdchagas',
+    nostr: 'npub179vhvd8t2c4dx6txyh45d4yg74n4twj2dn4z5t0fvyxxp3k5p06q9hl3u6',
   })
 
   // Seed projects

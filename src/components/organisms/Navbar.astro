@@ -9,15 +9,16 @@ export interface Props {
 const { brand = 'VHT' } = Astro.props
 ---
 
-<nav class="navbar">
+<nav class="navbar" transition:name="navbar">
   <div class="nav-container">
     <div class="nav-brand">
-      <a href="/#hero">{brand}</a>
+      <a href="/">{brand}</a>
     </div>
 
     <div class="nav-links">
       <a href="#hero" class="nav-link">Home</a>
       <a href="#projects" class="nav-link">Projects</a>
+      <a href="/adrift-notes" class="nav-link">Adrift Notes</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#contact" class="nav-link">Contact</a>
     </div>
@@ -34,7 +35,7 @@ const { brand = 'VHT' } = Astro.props
     top: 0;
     left: 0;
     right: 0;
-    background: oklch(100% 0 0 / 0.95);
+    background: var(--bg-primary);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid oklch(65% 0.2 45 / 0.1);
     z-index: 1000;
@@ -59,17 +60,17 @@ const { brand = 'VHT' } = Astro.props
   .nav-brand a {
     font-size: 1.5rem;
     font-weight: bold;
-    color: oklch(65% 0.2 45);
+    color: var(--text-primary);
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
   .nav-brand a:hover {
-    color: oklch(55% 0.2 45);
+    color: var(--text-secondary);
   }
 
   [data-theme='dark'] .nav-brand a {
-    color: oklch(75% 0.2 45);
+    color: var(--text-primary);
   }
 
   .nav-links {
@@ -78,7 +79,7 @@ const { brand = 'VHT' } = Astro.props
   }
 
   .nav-link {
-    color: oklch(20% 0 0);
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
@@ -137,15 +138,46 @@ const { brand = 'VHT' } = Astro.props
 </style>
 
 <script>
+  // Apply theme on page load (including view transitions)
+  function applyTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light'
+    document.documentElement.setAttribute('data-theme', savedTheme)
+
+    // Update toggle button visual state
+    const toggle = document.getElementById('theme-toggle')
+    if (toggle) {
+      if (savedTheme === 'dark') {
+        toggle.classList.add('dark')
+      } else {
+        toggle.classList.remove('dark')
+      }
+    }
+  }
+
+  // Apply theme on initial load
+  applyTheme()
+
+  // Apply theme on view transition page loads
+  document.addEventListener('astro:page-load', applyTheme)
+
   // Smooth scrolling for navigation links
   document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link')
 
     navLinks.forEach((link) => {
       link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href') || ''
+
+        // Handle external links (starting with /)
+        if (href.startsWith('/')) {
+          // Allow default navigation for external links
+          return
+        }
+
+        // Handle anchor links
         e.preventDefault()
-        const targetId = link.getAttribute('href')?.substring(1)
-        const targetElement = document.getElementById(targetId || '')
+        const targetId = href.substring(1)
+        const targetElement = document.getElementById(targetId)
 
         if (targetElement) {
           const offsetTop = targetElement.offsetTop - 70 // Account for fixed navbar

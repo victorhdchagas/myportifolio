@@ -1,0 +1,44 @@
+name: Share New Adrift Notes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  share:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # To compare with previous commit
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Get changed files
+        id: changed-files
+        run: |
+          # Get files added in the latest commit
+          CHANGED_FILES=$(git diff --name-only --diff-filter=A HEAD~1..HEAD)
+          echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+
+      - name: Share new notes
+        env:
+          NOSTR_PRIVATE_KEY: ${{ secrets.NOSTR_PRIVATE_KEY }}
+        run: |
+          CHANGED_FILES="${{ steps.changed-files.outputs.changed_files }}"
+          for file in $CHANGED_FILES; do
+            if [[ $file == src/content/adrift-notes/*.md ]]; then
+              echo "Sharing new note: $file"
+              node scripts/share-new-notes.js "$file"
+            fi
+          done

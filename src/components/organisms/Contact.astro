@@ -15,9 +15,12 @@ const personalInfo = await db.select().from(PersonalInfo).limit(1)
 const data = personalInfo[0]
 
 const title = data?.contactTitle || 'Get In Touch'
-const subtitle = data?.contactSubtitle || "I'd love to hear from you. Send me a message and I'll respond as soon as possible."
+const subtitle =
+  data?.contactSubtitle ||
+  "I'd love to hear from you. Send me a message and I'll respond as soon as possible."
 const email = data?.contactEmail || 'victorhdchagas@live.com'
-const linkedin = data?.contactLinkedin || 'https://www.linkedin.com/in/victorhdchagas/'
+const linkedin =
+  data?.contactLinkedin || 'https://www.linkedin.com/in/victorhdchagas/'
 const github = data?.contactGithub || 'https://github.com/victorhdchagas'
 const nostrHex = data?.contactNostr
 const nostrNpub = nostrHex ? nip19.npubEncode(nostrHex) : null
@@ -45,7 +48,7 @@ const nostrUrl = nostrNpub ? `https://snort.social/p/${nostrNpub}` : null
             <div>
               <strong>LinkedIn</strong>
               <a href={linkedin} target="_blank" rel="noopener noreferrer"
-                >linkedin.com/in/wutachi</a
+                >linkedin.com/in/victorhdchagas</a
               >
             </div>
           </div>
@@ -54,26 +57,29 @@ const nostrUrl = nostrNpub ? `https://snort.social/p/${nostrNpub}` : null
             <div>
               <strong>GitHub</strong>
               <a href={github} target="_blank" rel="noopener noreferrer"
-                >github.com/wutachi</a
+                >github.com/victorhdchagas</a
               >
             </div>
           </div>
-          {nostrUrl && (
-            <div class="contact-item">
-              <div class="contact-icon">🛰️</div>
-              <div>
-                <strong>Nostr</strong>
-                <a href={nostrUrl} target="_blank" rel="noopener noreferrer"
-                  >{nostrNpub?.slice(0, 12)}...{nostrNpub?.slice(-8)}</a
-                >
+          {
+            nostrUrl && (
+              <div class="contact-item">
+                <div class="contact-icon">🛰️</div>
+                <div>
+                  <strong>Nostr</strong>
+                  <a href={nostrUrl} target="_blank" rel="noopener noreferrer">
+                    {nostrNpub?.slice(0, 12)}...{nostrNpub?.slice(-8)}
+                  </a>
+                </div>
               </div>
-            </div>
-          )}
+            )
+          }
         </div>
       </div>
 
       <Card shadow="inset" class="contact-form">
-        <div id="form-message" class="form-message" style="display: none;"></div>
+        <div id="form-message" class="form-message" style="display: none;">
+        </div>
         <form id="contact-form" method="POST" action="/api/contact">
           <div class="form-group">
             <label for="name">Name</label>
@@ -293,54 +299,56 @@ const nostrUrl = nostrNpub ? `https://snort.social/p/${nostrNpub}` : null
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contact-form') as HTMLFormElement;
-    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-    const btnText = submitBtn.querySelector('.btn-text') as HTMLElement;
-    const btnLoading = submitBtn.querySelector('.btn-loading') as HTMLElement;
-    const messageDiv = document.getElementById('form-message') as HTMLElement;
+    const form = document.getElementById('contact-form') as HTMLFormElement
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement
+    const btnText = submitBtn.querySelector('.btn-text') as HTMLElement
+    const btnLoading = submitBtn.querySelector('.btn-loading') as HTMLElement
+    const messageDiv = document.getElementById('form-message') as HTMLElement
 
     form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+      e.preventDefault()
 
       // Show loading state
-      submitBtn.disabled = true;
-      btnText.style.display = 'none';
-      btnLoading.style.display = 'inline';
+      submitBtn.disabled = true
+      btnText.style.display = 'none'
+      btnLoading.style.display = 'inline'
 
       // Clear previous messages
-      messageDiv.style.display = 'none';
-      messageDiv.className = 'form-message';
+      messageDiv.style.display = 'none'
+      messageDiv.className = 'form-message'
 
       try {
-        const formData = new FormData(form);
+        const formData = new FormData(form)
         const response = await fetch('/api/contact', {
           method: 'POST',
-          body: formData
-        });
+          body: formData,
+        })
 
-        const result = await response.json();
+        const result = await response.json()
 
         if (response.ok && result.success) {
           // Success
-          messageDiv.className = 'form-message success';
-          messageDiv.textContent = result.message;
-          form.reset();
+          messageDiv.className = 'form-message success'
+          messageDiv.textContent = result.message
+          form.reset()
         } else {
           // Error
-          messageDiv.className = 'form-message error';
-          messageDiv.textContent = result.error || 'An error occurred. Please try again.';
+          messageDiv.className = 'form-message error'
+          messageDiv.textContent =
+            result.error || 'An error occurred. Please try again.'
         }
       } catch (error) {
         // Network error
-        messageDiv.className = 'form-message error';
-        messageDiv.textContent = 'Network error. Please check your connection and try again.';
+        messageDiv.className = 'form-message error'
+        messageDiv.textContent =
+          'Network error. Please check your connection and try again.'
       } finally {
         // Reset loading state
-        submitBtn.disabled = false;
-        btnText.style.display = 'inline';
-        btnLoading.style.display = 'none';
-        messageDiv.style.display = 'block';
+        submitBtn.disabled = false
+        btnText.style.display = 'inline'
+        btnLoading.style.display = 'none'
+        messageDiv.style.display = 'block'
       }
-    });
-  });
+    })
+  })
 </script>

@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string;
+  url: string;
+}
+
+const { title, url } = Astro.props;
+---
+
+<button
+  class="share-button"
+  onclick="openShareModal()"
+  aria-label="Compartilhar artigo"
+>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="18" cy="5" r="3"></circle>
+    <circle cx="6" cy="12" r="3"></circle>
+    <circle cx="18" cy="19" r="3"></circle>
+    <path d="m8.59 13.51 6.83 3.98"></path>
+    <path d="m15.41 6.51-6.82 3.98"></path>
+  </svg>
+  Compartilhar
+</button>
+
+<style>
+  .share-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .share-button:hover {
+    background: var(--text-accent);
+    color: white;
+    border-color: var(--text-accent);
+  }
+
+  .share-button svg {
+    flex-shrink: 0;
+  }
+</style>

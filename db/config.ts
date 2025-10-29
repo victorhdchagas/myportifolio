@@ -35,9 +35,25 @@ const Projects = defineTable({
   }
 });
 
+const Authors = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    name: column.text(),
+    bio: column.text(),
+    avatar: column.text({ optional: true }),
+    email: column.text({ optional: true }),
+    website: column.text({ optional: true }),
+    twitter: column.text({ optional: true }),
+    linkedin: column.text({ optional: true }),
+    github: column.text({ optional: true }),
+    nostr: column.text({ optional: true }),
+  }
+});
+
 export default defineDb({
   tables: {
     PersonalInfo,
-    Projects
+    Projects,
+    Authors
   }
 });
