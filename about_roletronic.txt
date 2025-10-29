@@ -1,0 +1,17 @@
+Sobre a plataforma:
+Roletronic é o portal nacional de música eletrônica, projetado para ser o epicentro da cena da música eletrônica brasileira. Sua missão é conectar artistas e fãs, promovendo um espaço dedicado à interação e descoberta. A plataforma visa se tornar uma referência para a comunidade eletrônica nacional, reconhecida por sua inovação e compromisso com artistas e seu público, contribuindo assim para a evolução do cenário musical.
+
+Funcionalidades:
+A plataforma permite aos usuários explorar, conhecer e se conectar dentro do mundo da música eletrônica. Ela apresenta diversas categorias e funcionalidades, incluindo:
+- Artistas: Descubra e conecte-se com artistas de música eletrônica.
+- Eventos: Encontre e promova eventos de música eletrônica.
+- Profissionais: Conecte-se com bookers, managers, agências, fotógrafos e videomakers.
+- Comunidade: Engaje-se com excursões, coletivos e marcas dentro da cena da música eletrônica.
+- Gêneros: Explore diferentes gêneros de música eletrônica, como Bushprog, Techno, Zenonesque, Psytech, Minimal Dark, Glitch Hop, Gangsta Prog, Future Prog, Chillgressive e Fullon.
+
+Tecnologias Utilizadas:
+**Backend:**
+No desenvolvimento do backend, utilizei o framework NestJS para construir uma API robusta e escalável. Para a gestão de banco de dados, empreguei o Prisma ORM, garantindo uma interação eficiente e segura com os dados. A integração com serviços de nuvem da AWS, como o S3, foi fundamental para o armazenamento de arquivos. Implementei sistemas de autenticação e autorização utilizando JWT e Passport, além de validação de dados com Class-validator e Zod. Também trabalhei com ferramentas para envio de e-mails (Nodemailer, Resend), processamento de imagens (Sharp), pagamentos (Stripe) e logging (Pino).
+
+**Frontend:**
+No frontend, desenvolvi a aplicação utilizando Next.js e React, criando uma experiência de usuário dinâmica e responsiva. Para a construção da interface, utilizei bibliotecas de componentes como Radix UI e Radix Themes, e para animações, o Framer Motion. Implementei gerenciamento de formulários com React Hook Form e Zod para validação. A integração de mídias foi feita com FFmpeg para manipulação de áudio/vídeo e React Easy Crop para edição de imagens. Também utilizei ferramentas para otimização de SEO, análise de dados e integração com redes sociais, além de estilização com Tailwind CSS e SASS.

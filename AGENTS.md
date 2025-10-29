@@ -44,3 +44,9 @@ src/tests/     → Mirror component structure
 - Sends emails using Nodemailer with Gmail
 - Client-side form validation and submission handling
 - Success/error messages displayed to user
+
+## Nostr Verification
+- NIP-05 verification endpoint: `/.well-known/nostr.json`
+- Returns JSON mapping usernames to public keys
+- Enables `victor@victorhugo.info` Nostr identity verification
+- Static JSON file for optimal performance

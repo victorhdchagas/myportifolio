@@ -19,6 +19,7 @@ const PersonalInfo = defineTable({
     contactEmail: column.text(),
     contactLinkedin: column.text(),
     contactGithub: column.text(),
+    contactNostr: column.text({ optional: true }),
   }
 });
 

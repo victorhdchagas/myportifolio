@@ -2,6 +2,7 @@
 // src/components/organisms/Contact.astro
 import Card from '../atoms/Card.astro'
 import { db, PersonalInfo } from 'astro:db'
+import { nip19 } from 'nostr-tools'
 
 export interface Props {
   id?: string
@@ -18,6 +19,9 @@ const subtitle = data?.contactSubtitle || "I'd love to hear from you. Send me a 
 const email = data?.contactEmail || 'victorhdchagas@live.com'
 const linkedin = data?.contactLinkedin || 'https://www.linkedin.com/in/victorhdchagas/'
 const github = data?.contactGithub || 'https://github.com/victorhdchagas'
+const nostrHex = data?.contactNostr
+const nostrNpub = nostrHex ? nip19.npubEncode(nostrHex) : null
+const nostrUrl = nostrNpub ? `https://snort.social/p/${nostrNpub}` : null
 ---
 
 <section class="contact" id={id}>
@@ -54,6 +58,17 @@ const github = data?.contactGithub || 'https://github.com/victorhdchagas'
               >
             </div>
           </div>
+          {nostrUrl && (
+            <div class="contact-item">
+              <div class="contact-icon">🛰️</div>
+              <div>
+                <strong>Nostr</strong>
+                <a href={nostrUrl} target="_blank" rel="noopener noreferrer"
+                  >{nostrNpub?.slice(0, 12)}...{nostrNpub?.slice(-8)}</a
+                >
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

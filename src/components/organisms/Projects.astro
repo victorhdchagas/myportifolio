@@ -1,6 +1,7 @@
 ---
 // src/components/organisms/Projects.astro
 import { db, Projects as ProjectsTable } from 'astro:db'
+import { Image } from 'astro:assets'
 
 export interface Project {
   id: string
@@ -52,6 +53,8 @@ const title = 'My Projects'
                 src={project.image}
                 alt={project.title}
                 class="project-image"
+                loading="lazy"
+                decoding="async"
               />
             )}
             <div class="project-content">
@@ -136,6 +139,21 @@ const title = 'My Projects'
     height: 200px;
     object-fit: contain;
     background-color: black;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-image[loading='lazy']:not([data-loaded]):not(
+      [src*='product_placeholder']
+    ) {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(1.1);
+  }
+
+  .project-image[data-loaded] {
+    opacity: 1;
+    filter: none;
+    transform: none;
   }
 
   .project-content {
@@ -215,3 +233,38 @@ const title = 'My Projects'
     }
   }
 </style>
+
+<script>
+  // Image loading optimization
+  document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.project-image[loading="lazy"]')
+
+    images.forEach((img) => {
+      const image = img as HTMLImageElement
+
+      // Skip loading effects for placeholder images
+      if (image.src.includes('product_placeholder.jpg')) {
+        image.setAttribute('data-loaded', 'true')
+        return
+      }
+
+      // Preload critical images (first 2)
+      if (Array.from(images).indexOf(image) < 3) {
+        image.loading = 'eager'
+      }
+
+      // Handle image load
+      image.addEventListener('load', () => {
+        image.setAttribute('data-loaded', 'true')
+      })
+
+      // Handle image error
+      image.addEventListener('error', () => {
+        image.style.opacity = '0.5'
+        image.src = '/product_placeholder.jpg'
+        image.alt = 'Image failed to load'
+        image.setAttribute('data-loaded', 'true')
+      })
+    })
+  })
+</script>
