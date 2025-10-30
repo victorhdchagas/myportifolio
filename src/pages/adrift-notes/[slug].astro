@@ -3,9 +3,10 @@ import Navbar from '../../components/organisms/Navbar.astro'
 import MobileNav from '../../components/organisms/MobileNav.astro'
 import ShareButton from '../../components/atoms/ShareButton.astro'
 import ShareModal from '../../components/molecules/ShareModal.astro'
-import { ViewTransitions } from 'astro:transitions'
+
 import { getCollection } from 'astro:content'
 import { db, Authors } from 'astro:db'
+import { eq } from 'astro:db'
 import fs from 'fs'
 import path from 'path'
 
@@ -22,8 +23,11 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props
 
+// Render the article content
+const { Content } = await article.render()
+
 // Get author information
-const author = await db.select().from(Authors).where('id', 1).get()
+const author = await db.select().from(Authors).where(eq(Authors.id, 1)).get()
 
 // Calculate reading time (average 200 words per minute)
 const wordCount = article.body.split(/\s+/).length
@@ -39,7 +43,7 @@ const publishDate = article.data.publishDate.toISOString()
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
@@ -70,7 +74,7 @@ const publishDate = article.data.publishDate.toISOString()
        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
        rel="stylesheet"
      />
-     <ViewTransitions />
+
    </head>
   <body>
     <Navbar />
@@ -132,9 +136,12 @@ const publishDate = article.data.publishDate.toISOString()
                  Seu navegador não suporta o elemento de áudio.
                </audio>
                <h3>Ouça este artigo</h3>
-               <script>
-                 document.getElementById('article-audio').playbackRate = 1.25;
-               </script>
+                <script>
+                  const audio = document.getElementById('article-audio') as HTMLAudioElement;
+                  if (audio) {
+                    audio.playbackRate = 1.25;
+                  }
+                </script>
              </div>
            )}
 
@@ -145,7 +152,9 @@ const publishDate = article.data.publishDate.toISOString()
            </header>
 
            <!-- Article Content -->
-           <div class="article-content" set:html={article.rendered.html}></div>
+            <div class="article-content">
+              <Content />
+            </div>
 
            <!-- Author Section -->
           {author && (

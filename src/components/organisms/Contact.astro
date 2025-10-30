@@ -81,11 +81,11 @@ const nostrUrl = nostrNpub ? `https://snort.social/p/${nostrNpub}` : null
         <div id="form-message" class="form-message" style="display: none;">
         </div>
         <form id="contact-form">
-          <!-- EmailJS CDN -->
-          <script
-            type="text/javascript"
-            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-          ></script>
+           <!-- EmailJS CDN - https://www.emailjs.com/ -->
+           <script
+             type="text/javascript"
+             src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+           ></script>
 
           <div class="form-group">
             <label for="name">Name</label>
@@ -304,10 +304,15 @@ const nostrUrl = nostrNpub ? `https://snort.social/p/${nostrNpub}` : null
 </style>
 
 <script>
-  // EmailJS configuration - Replace with your actual IDs
-  const SERVICE_ID = 'service_emailjs'
-  const TEMPLATE_ID = 'template_zs0uamg'
-  const PUBLIC_KEY = '-P-s5Vwm5THRPRKUi'
+   // EmailJS configuration
+   // 1. Create account at https://www.emailjs.com/
+   // 2. Add Gmail service (or your preferred email service)
+   // 3. Create an email template with variables: {{from_name}}, {{from_email}}, {{subject}}, {{message}}, {{to_email}}
+   // 4. Replace the placeholder values below with your actual EmailJS IDs
+
+   const SERVICE_ID = 'service_emailjs'  // Replace with your EmailJS service ID
+   const TEMPLATE_ID = 'template_zs0uamg'  // Replace with your EmailJS template ID
+   const PUBLIC_KEY = '-P-s5Vwm5THRPRKUi'  // Replace with your EmailJS public key
 
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form') as HTMLFormElement
