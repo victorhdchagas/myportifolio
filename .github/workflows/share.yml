@@ -10,35 +10,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-       - name: Checkout code
-         uses: actions/checkout@v4
-         with:
-           fetch-depth: 0  # Fetch full history for accurate diff
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch full history for accurate diff
 
-       - name: Install pnpm
-         uses: pnpm/action-setup@v4
-         with:
-           version: latest
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
 
-       - name: Setup Node.js
-         uses: actions/setup-node@v4
-         with:
-           node-version: '20'
-           cache: 'pnpm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
 
-       - name: Install dependencies
-         run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-       - name: Get changed files
-         id: changed-files
-         run: |
-           # Get files added in this push (handles multiple commits)
-           echo "Before SHA: ${{ github.event.before }}"
-           echo "After SHA: ${{ github.sha }}"
-           CHANGED_FILES=$(git diff --name-only --diff-filter=A ${{ github.event.before }} ${{ github.sha }})
-           echo "Changed files: $CHANGED_FILES"
-           echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
-
+      - name: Get changed files
+        id: changed-files
+        run: |
+          # Get files added in this push (handles multiple commits)
+          echo "Before SHA: ${{ github.event.before }}"
+          echo "After SHA: ${{ github.sha }}"
+          CHANGED_FILES=$(git diff --name-only --diff-filter=A ${{ github.event.before }} ${{ github.sha }})
+          echo "Changed files: $CHANGED_FILES"
+          echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
       - name: Share new notes
         env:
           NOSTR_PRIVATE_KEY: ${{ secrets.NOSTR_PRIVATE_KEY }}
