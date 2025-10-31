@@ -1,8 +1,8 @@
 ---
-title: "Notas sobre Refactoring UI"
-description: "Uma jornada de descoberta pelos princípios de design que estão revolucionando minha forma de pensar interfaces. Anotações sobre como pequenos detalhes tipográficos podem transformar completamente a experiência do usuário."
+title: 'Sobre Refactoring UI'
+description: 'Uma jornada de descoberta pelos princípios de design que estão revolucionando minha forma de pensar interfaces. Anotações sobre como pequenos detalhes tipográficos podem transformar completamente a experiência do usuário.'
 publishDate: 2025-10-31
-tags: ["design", "ui", "tipografia", "refactoring-ui", "livros", "anotações"]
+tags: ['design', 'ui', 'tipografia', 'refactoring-ui', 'livros', 'anotações']
 draft: false
 ---
 
@@ -64,4 +64,4 @@ Cada página foi uma descoberta. Cada conceito, uma mudança na minha forma de v
 
 ---
 
-*Nota para o meu eu do futuro: Lembre-se de que os melhores designs são aqueles que você nem percebe. Foque nos detalhes invisíveis - eles são os que realmente importam.*
+_Nota para o meu eu do futuro: Lembre-se de que os melhores designs são aqueles que você nem percebe. Foque nos detalhes invisíveis - eles são os que realmente importam._
