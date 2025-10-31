@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Joplin annotations (shared notes for review/integration)
+joplin-annotations/
