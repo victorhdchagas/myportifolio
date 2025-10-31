@@ -2,7 +2,11 @@ import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { WebSocket } from 'ws';
 import { Relay, finalizeEvent, generateSecretKey, getPublicKey, nip19 } from 'nostr-tools';
+
+// Polyfill WebSocket for Node.js
+global.WebSocket = WebSocket;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,19 +22,28 @@ async function shareToNostr(filePath) {
     return;
   }
 
-  const frontmatter = frontmatterMatch[1];
-  const titleMatch = frontmatter.match(/title:\s*"([^"]+)"/) || frontmatter.match(/title:\s*(.+)/);
-  const descriptionMatch = frontmatter.match(/description:\s*"([^"]+)"/) || frontmatter.match(/description:\s*(.+)/);
-  const slugMatch = frontmatter.match(/slug:\s*(.+)/);
+   const frontmatter = frontmatterMatch[1];
+   const titleMatch = frontmatter.match(/title:\s*"([^"]+)"/) || frontmatter.match(/title:\s*'([^']+)'/) || frontmatter.match(/title:\s*(.+)/);
+   const descriptionMatch = frontmatter.match(/description:\s*"([^"]+)"/) || frontmatter.match(/description:\s*'([^']+)'/) || frontmatter.match(/description:\s*(.+)/);
+   const slugMatch = frontmatter.match(/slug:\s*(.+)/);
+   const tagsMatch = frontmatter.match(/tags:\s*\[([^\]]+)\]/);
 
   if (!titleMatch || !descriptionMatch) {
     console.error('Missing title or description in frontmatter');
     return;
   }
 
-  const title = titleMatch[1].trim();
-  const description = descriptionMatch[1].trim();
-  const slug = slugMatch ? slugMatch[1].trim() : path.basename(filePath, '.md');
+   const title = titleMatch[1].trim();
+   const description = descriptionMatch[1].trim();
+   const slug = slugMatch ? slugMatch[1].trim() : path.basename(filePath, '.md');
+
+   // Parse tags
+   let tags = [];
+   if (tagsMatch) {
+     const tagsString = tagsMatch[1];
+     const tagList = tagsString.split(',').map(tag => tag.trim().replace(/^["']|["']$/g, ''));
+     tags = tagList.map(tag => ['t', tag]);
+   }
 
   // Construct URL
   const url = `https://victorhugo.info/adrift-notes/${slug}`;
@@ -44,15 +57,15 @@ async function shareToNostr(filePath) {
 
   if (dryRun) {
     // For dry run, create a mock event
-    signedEvent = {
-      kind: 1,
-      created_at: Math.floor(Date.now() / 1000),
-      tags: [],
-      content: message,
-      pubkey: 'mock-pubkey',
-      id: 'mock-id',
-      sig: 'mock-signature'
-    };
+     signedEvent = {
+       kind: 1,
+       created_at: Math.floor(Date.now() / 1000),
+       tags: tags,
+       content: message,
+       pubkey: 'mock-pubkey',
+       id: 'mock-id',
+       sig: 'mock-signature'
+     };
   } else {
     // Get private key from environment
     const nsec = process.env.NOSTR_PRIVATE_KEY;
@@ -69,14 +82,14 @@ async function shareToNostr(filePath) {
     }
     const privateKey = decoded.data;
 
-    // Create event
-    const event = {
-      kind: 1,
-      created_at: Math.floor(Date.now() / 1000),
-      tags: [],
-      content: message,
-      pubkey: getPublicKey(privateKey),
-    };
+     // Create event
+     const event = {
+       kind: 1,
+       created_at: Math.floor(Date.now() / 1000),
+       tags: tags,
+       content: message,
+       pubkey: getPublicKey(privateKey),
+     };
 
     signedEvent = finalizeEvent(event, privateKey);
   }
