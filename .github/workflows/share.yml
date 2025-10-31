@@ -29,17 +29,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-       - name: Get changed files
-         id: changed-files
-         run: |
-           # Get files added in this push (handles multiple commits)
-           echo "Before SHA: ${{ github.event.before }}"
-           echo "After SHA: ${{ github.sha }}"
-           echo "Raw diff output:"
-           git diff --name-only --diff-filter=A ${{ github.event.before }} ${{ github.sha }}
-           CHANGED_FILES=$(git diff --name-only --diff-filter=A ${{ github.event.before }} ${{ github.sha }} | tr '\n' ' ')
-           echo "Changed files: $CHANGED_FILES"
-           echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+      - name: Get changed files
+        id: changed-files
+        run: |
+          # Get files added in this push (handles multiple commits)
+          echo "Before SHA: ${{ github.event.before }}"
+          echo "After SHA: ${{ github.sha }}"
+          echo "Raw diff output:"
+          git diff --name-only --diff-filter=A ${{ github.event.before }} ${{ github.sha }}
+          CHANGED_FILES=$(git diff --name-only --diff-filter=A ${{ github.event.before }} ${{ github.sha }} | tr '\n' ' ')
+          echo "Changed files: $CHANGED_FILES"
+          echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
       - name: Share new notes
         env:
           NOSTR_PRIVATE_KEY: ${{ secrets.NOSTR_PRIVATE_KEY }}
