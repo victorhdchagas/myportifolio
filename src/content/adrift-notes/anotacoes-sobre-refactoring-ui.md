@@ -1,5 +1,5 @@
 ---
-title: "Primeiras Impressões: Refactoring UI"
+title: "Anotações sobre Refactoring UI"
 description: "Uma jornada de descoberta pelos princípios de design que estão revolucionando minha forma de pensar interfaces. Anotações sobre como pequenos detalhes tipográficos podem transformar completamente a experiência do usuário."
 publishDate: 2025-10-31
 tags: ["design", "ui", "tipografia", "refactoring-ui", "livros", "anotações"]

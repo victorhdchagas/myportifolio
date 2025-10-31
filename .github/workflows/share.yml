@@ -35,7 +35,7 @@ jobs:
           # Get files added in this push (handles multiple commits)
           echo "Before SHA: ${{ github.event.before }}"
           echo "After SHA: ${{ github.sha }}"
-          CHANGED_FILES=$(git diff --name-only --diff-filter=A ${{ github.event.before }} ${{ github.sha }})
+          CHANGED_FILES=$(git diff --name-only --diff-filter=A ${{ github.event.before }} ${{ github.sha }} | tr '\n' ' ')
           echo "Changed files: $CHANGED_FILES"
           echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
       - name: Share new notes
@@ -43,9 +43,10 @@ jobs:
           NOSTR_PRIVATE_KEY: ${{ secrets.NOSTR_PRIVATE_KEY }}
         run: |
           CHANGED_FILES="${{ steps.changed-files.outputs.changed_files }}"
-          for file in $CHANGED_FILES; do
-            if [[ $file == src/content/adrift-notes/*.md ]]; then
-              echo "Sharing new note: $file"
-              node scripts/share-new-notes.js "$file"
-            fi
-          done
+           for file in $CHANGED_FILES; do
+             if [[ $file == src/content/adrift-notes/*.md ]]; then
+               echo "Sharing new note: $file"
+               node scripts/share-new-notes.js "$file"
+               echo "Finished sharing: $file"
+             fi
+           done
