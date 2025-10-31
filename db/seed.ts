@@ -56,7 +56,7 @@ export default async function seed() {
     avatar: 'https://victorhugo.info/pictures/avatar.jpeg',
     email: 'contato@victorhugo.info',
     website: 'https://victorhugo.info',
-    twitter: 'https://twitter.com/victorhugof',
+    twitter: 'https://twitter.com/wutahi',
     linkedin: 'https://www.linkedin.com/in/victorhdchagas/',
     github: 'https://github.com/victorhdchagas',
     nostr: 'npub179vhvd8t2c4dx6txyh45d4yg74n4twj2dn4z5t0fvyxxp3k5p06q9hl3u6',
