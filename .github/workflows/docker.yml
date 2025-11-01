@@ -46,3 +46,14 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - name: Trigger Jenkins Deployment
+        run: |
+          # A URL publica que o Cloudflare Tunnel roteia para seu Jenkins
+          JENKINS_URL="https://jenkins.victorhugo.info/generic-webhook-trigger/invoke"
+
+          echo "Disparando Jenkins Deployment Job..."
+
+          # Executa a chamada HTTP POST, passando o token como parâmetro.
+          curl -X POST "${JENKINS_URL}?token=${{ secrets.JENKINS_WEBHOOK_TOKEN }}"
+        env:
+          JENKINS_WEBHOOK_TOKEN: ${{ secrets.JENKINS_WEBHOOK_TOKEN }}
