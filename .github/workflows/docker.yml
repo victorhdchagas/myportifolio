@@ -50,18 +50,24 @@ jobs:
         run: |
           # A URL publica que o Cloudflare Tunnel roteia para seu Jenkins
           TAGS="${{ steps.meta.outputs.tags }}"
-          DEPLOY_TAG=$(echo "$TAGS" | grep -oE 'main-[0-9a-f]{7}' | awk -F: '{print $NF}' | head -n 1)
+
+          # 1. Encontra a linha que tem o formato de tag SHA (main-).
+          # 2. Usa 'awk' para imprimir o último campo após o delimitador ':'.
+          # 3. 'head -n 1' garante uma única tag.
+          DEPLOY_TAG=$(echo "$TAGS" | grep 'main-' | awk -F: '{print $NF}' | head -n 1)
+
           if [ -z "$DEPLOY_TAG" ]; then
-            echo "ERRO: Não foi possível extrair a tag SHA do commit."
+            echo "::error title=Extração de Tag Falhou::Não foi possível extrair a tag SHA do commit. O Deployment não será acionado."
             echo "Tags geradas: $TAGS"
-            # Opcionalmente, você pode falhar a Action aqui se a tag for crítica
-            # exit 1 
+            # O exit 1 garante que o Action falhe se a variável crítica não for capturada
+            exit 1 
           fi
+
           JENKINS_URL="https://jenkins.victorhugo.info/generic-webhook-trigger/invoke"
 
-          echo "Disparando Jenkins Deployment Job..."
+          echo "Disparando Jenkins Deployment Job com TAG: $DEPLOY_TAG"
 
-          # Executa a chamada HTTP POST, passando o token como parâmetro.
+          # Executa a chamada HTTP POST, passando o token e a TAG_SHA
           curl -X POST "${JENKINS_URL}?token=${{ secrets.JENKINS_WEBHOOK_TOKEN }}&TAG_SHA=${DEPLOY_TAG}"
         env:
           JENKINS_WEBHOOK_TOKEN: ${{ secrets.JENKINS_WEBHOOK_TOKEN }}
