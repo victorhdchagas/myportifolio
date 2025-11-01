@@ -13,7 +13,7 @@ export default async function seed() {
     heroTitle: 'Victor Hugo',
     heroSubtitle:
       'Desenvolvedor fullstack com mais de 13 anos de experiência em desenvolvimento de tecnologias web',
-    heroCtaText: 'Meus trabalhos',
+    heroCtaText: 'Meus trabalhos 📣',
     // About section
     aboutTitle: 'Sobre mim',
     aboutBio:
