@@ -12,12 +12,12 @@ export default async function seed() {
     // Hero section
     heroTitle: 'Victor Hugo',
     heroSubtitle:
-      'Desenvolvedor fullstack com mais de 13 anos de experiência em desenvolvimento de tecnologia, tenho expertise em diversas linguagens de programação, incluindo Go, Node.js, and modern web technologies',
-    heroCtaText: 'View My Work',
+      'Desenvolvedor fullstack com mais de 13 anos de experiência em desenvolvimento de tecnologias web',
+    heroCtaText: 'Meus trabalhos',
     // About section
-    aboutTitle: 'About Me',
+    aboutTitle: 'Sobre mim',
     aboutBio:
-      'Com mais de 13 anos de experiência em desenvolvimento de tecnologia, tenho expertise em diversas linguagens de programação, incluindo Java, C#, VB.Net, Delphi e Node.js. Atuei em projetos utilizando metodologias ágeis como SCRUM, utilizando os princípios SOLID de desenvolvimento de software.',
+      'Tenho expertise em diversas linguagens de programação, incluindo Java, C#, VB.Net, Delphi e Node.js. Atuei em projetos utilizando metodologias ágeis como SCRUM',
     aboutSkills: [
       'Java',
       'Go',
