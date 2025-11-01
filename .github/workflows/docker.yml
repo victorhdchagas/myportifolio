@@ -56,6 +56,6 @@ jobs:
           echo "Disparando Jenkins Deployment Job..."
 
           # Executa a chamada HTTP POST, passando o token como parâmetro.
-          curl -X POST "${JENKINS_URL}?token=${{ secrets.JENKINS_WEBHOOK_TOKEN }}&TAG_SHA=${DEPLOY_TAG}""
+          curl -X POST "${JENKINS_URL}?token=${{ secrets.JENKINS_WEBHOOK_TOKEN }}&TAG_SHA=${DEPLOY_TAG}"
         env:
           JENKINS_WEBHOOK_TOKEN: ${{ secrets.JENKINS_WEBHOOK_TOKEN }}
