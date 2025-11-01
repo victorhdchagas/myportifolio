@@ -50,7 +50,7 @@ jobs:
         run: |
           # A URL publica que o Cloudflare Tunnel roteia para seu Jenkins
           TAGS="${{ steps.meta.outputs.tags }}"
-          DEPLOY_TAG=$(echo "$TAGS" | grep -oE 'main-[0-9a-f]{7}' | awk -F: '{print $NF})
+          DEPLOY_TAG=$(echo "$TAGS" | grep -oE 'main-[0-9a-f]{7}' | awk -F: '{print $NF}' | head -n 1)
           if [ -z "$DEPLOY_TAG" ]; then
             echo "ERRO: Não foi possível extrair a tag SHA do commit."
             echo "Tags geradas: $TAGS"
