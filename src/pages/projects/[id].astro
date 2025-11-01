@@ -56,7 +56,7 @@ const slug = project.title.toLowerCase().replace(/\s+/g, '-')
 const url = `https://victorhugo.dev/projects/${slug}`
 ---
 
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -181,16 +181,16 @@ const url = `https://victorhugo.dev/projects/${slug}`
             <div class="project-sidebar">
               <Card shadow="outset" class="project-info-card">
                 <div class="project-info">
-                   <div class="project-screenshot">
-                     <img
-                       src={project.images.length > 0
-                         ? `/${project.title.toLowerCase().replace(/\s+/g, '-')}/${project.images[0]}`
-                         : '/product_placeholder.jpg'}
-                       alt={`${project.title} screenshot`}
-                       loading="lazy"
-                       decoding="async"
-                     />
-                   </div>
+                  <div class="project-screenshot">
+                    <img
+                      src={project.images.length > 0
+                        ? `/${project.title.toLowerCase().replace(/\s+/g, '-')}/${project.images[0]}`
+                        : '/product_placeholder.jpg'}
+                      alt={`${project.title} screenshot`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
 
                   <h2>{project.title}</h2>
                   <p class="project-summary">{project.smallDescription}</p>
@@ -297,31 +297,33 @@ const url = `https://victorhugo.dev/projects/${slug}`
     <script>
       // Image loading optimization for project detail
       document.addEventListener('DOMContentLoaded', () => {
-        const images = document.querySelectorAll('.project-screenshot img[loading="lazy"]');
+        const images = document.querySelectorAll(
+          '.project-screenshot img[loading="lazy"]',
+        )
 
         images.forEach((img) => {
-          const image = img as HTMLImageElement;
+          const image = img as HTMLImageElement
 
           // Skip loading effects for placeholder images
           if (image.src.includes('product_placeholder.jpg')) {
-            image.setAttribute('data-loaded', 'true');
-            return;
+            image.setAttribute('data-loaded', 'true')
+            return
           }
 
           // Handle image load
           image.addEventListener('load', () => {
-            image.setAttribute('data-loaded', 'true');
-          });
+            image.setAttribute('data-loaded', 'true')
+          })
 
           // Handle image error
           image.addEventListener('error', () => {
-            image.style.opacity = '0.5';
-            image.src = '/product_placeholder.jpg';
-            image.alt = 'Image failed to load';
-            image.setAttribute('data-loaded', 'true');
-          });
-        });
-      });
+            image.style.opacity = '0.5'
+            image.src = '/product_placeholder.jpg'
+            image.alt = 'Image failed to load'
+            image.setAttribute('data-loaded', 'true')
+          })
+        })
+      })
     </script>
   </body>
 </html>
@@ -419,7 +421,8 @@ const url = `https://victorhugo.dev/projects/${slug}`
     transition: opacity 0.3s ease;
   }
 
-  .project-screenshot img[loading="lazy"]:not([data-loaded]):not([src*="product_placeholder"]) {
+  .project-screenshot
+    img[loading='lazy']:not([data-loaded]):not([src*='product_placeholder']) {
     opacity: 0;
     filter: blur(10px);
     transform: scale(1.05);

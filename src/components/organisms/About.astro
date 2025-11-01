@@ -13,16 +13,32 @@ const { id } = Astro.props
 const personalInfo = await db.select().from(PersonalInfo).limit(1)
 const data = personalInfo[0]
 
-const title = data?.aboutTitle || "About Me"
-const bio = data?.aboutBio || "Com mais de 13 anos de experiência em desenvolvimento de tecnologia, tenho expertise em diversas linguagens de programação, incluindo Java, C#, VB.Net, Delphi e Node.js. Atuei em projetos utilizando metodologias ágeis como SCRUM, utilizando os princípios SOLID de desenvolvimento de software."
-const skills = Array.isArray(data?.aboutSkills) ? data.aboutSkills : [
-  "Java", "C#", "VB.Net", "Delphi", "Node.js",
-  "React", "Vue.js", "Angular", "NestJS",
-  "PostgreSQL", "MySQL", "SQL Server",
-  "Docker", "GitHub Actions", "Kubernetes"
-]
-const experience = data?.aboutExperience || "13+ years"
+const title = data?.aboutTitle || 'About Me'
+const bio =
+  data?.aboutBio ||
+  'Com mais de 13 anos de experiência em desenvolvimento de tecnologia, tenho expertise em diversas linguagens de programação, incluindo Java, C#, VB.Net, Delphi e Node.js. Atuei em projetos utilizando metodologias ágeis como SCRUM, utilizando os princípios SOLID de desenvolvimento de software.'
+const skills = Array.isArray(data?.aboutSkills)
+  ? data.aboutSkills
+  : [
+      'Java',
+      'C#',
+      'VB.Net',
+      'Delphi',
+      'Node.js',
+      'React',
+      'Vue.js',
+      'Angular',
+      'NestJS',
+      'PostgreSQL',
+      'MySQL',
+      'SQL Server',
+      'Docker',
+      'GitHub Actions',
+      'Kubernetes',
+    ]
+const experience = data?.aboutExperience || '13+ years'
 ---
+
 <section class="about" id={id}>
   <div class="container">
     <div class="about-header">
@@ -39,33 +55,33 @@ const experience = data?.aboutExperience || "13+ years"
         <Card shadow="outset" class="bio-card">
           <div class="bio-header">
             <div class="bio-icon">👨‍💻</div>
-            <h3>My Journey</h3>
+            <h3>Minha jornada</h3>
           </div>
           <p class="about-bio">{bio}</p>
           <div class="experience-highlight">
             <div class="experience-number">{experience}</div>
-            <div class="experience-label">of Experience</div>
+            <div class="experience-label">de experiência</div>
           </div>
         </Card>
 
         <Card shadow="outset" class="stats-card">
-          <h3>Quick Stats</h3>
+          <h3>Status</h3>
           <div class="stats-grid">
             <div class="stat-item">
               <div class="stat-number">6+</div>
-              <div class="stat-label">Companies</div>
+              <div class="stat-label">Empresas</div>
             </div>
             <div class="stat-item">
               <div class="stat-number">10+</div>
-              <div class="stat-label">Projects</div>
+              <div class="stat-label">Projetos</div>
             </div>
             <div class="stat-item">
               <div class="stat-number">15+</div>
-              <div class="stat-label">Technologies</div>
+              <div class="stat-label">Tecnologias</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number">4</div>
-              <div class="stat-label">Countries</div>
+              <div class="stat-number">1</div>
+              <div class="stat-label">País</div>
             </div>
           </div>
         </Card>
@@ -78,9 +94,11 @@ const experience = data?.aboutExperience || "13+ years"
             <h3>Skills & Technologies</h3>
           </div>
           <div class="skills-grid">
-             {skills.map((skill: string) => (
-              <span class="skill-tag">{skill}</span>
-            ))}
+            {
+              skills.map((skill: string) => (
+                <span class="skill-tag">{skill}</span>
+              ))
+            }
           </div>
         </Card>
       </div>
@@ -89,11 +107,11 @@ const experience = data?.aboutExperience || "13+ years"
 </section>
 
 <style>
-   .about {
-     padding: 5rem 0;
-     background: var(--bg-tertiary);
-     scroll-margin-top: 70px;
-   }
+  .about {
+    padding: 5rem 0;
+    background: var(--bg-tertiary);
+    scroll-margin-top: 70px;
+  }
 
   .container {
     max-width: 1200px;
@@ -122,7 +140,12 @@ const experience = data?.aboutExperience || "13+ years"
 
   .decoration-line {
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--text-accent), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--text-accent),
+      transparent
+    );
     flex: 1;
     max-width: 100px;
   }
@@ -180,7 +203,11 @@ const experience = data?.aboutExperience || "13+ years"
     align-items: center;
     gap: 1rem;
     padding: 1.5rem;
-    background: linear-gradient(135deg, oklch(65% 0.2 45 / 0.1) 0%, oklch(75% 0.2 45 / 0.1) 100%);
+    background: linear-gradient(
+      135deg,
+      oklch(65% 0.2 45 / 0.1) 0%,
+      oklch(75% 0.2 45 / 0.1) 100%
+    );
     border-radius: 12px;
     border: 1px solid var(--border-color);
   }
@@ -265,7 +292,11 @@ const experience = data?.aboutExperience || "13+ years"
   }
 
   .skill-tag {
-    background: linear-gradient(135deg, oklch(65% 0.2 45) 0%, oklch(75% 0.2 45) 100%);
+    background: linear-gradient(
+      135deg,
+      oklch(65% 0.2 45) 0%,
+      oklch(75% 0.2 45) 100%
+    );
     color: white;
     padding: 0.75rem 1rem;
     border-radius: 25px;

@@ -12,7 +12,7 @@ export default async function seed() {
     // Hero section
     heroTitle: 'Victor Hugo',
     heroSubtitle:
-      'Fullstack Developer with 13+ years of experience in Java, C#, Node.js, and modern web technologies',
+      'Desenvolvedor fullstack com mais de 13 anos de experiência em desenvolvimento de tecnologia, tenho expertise em diversas linguagens de programação, incluindo Go, Node.js, and modern web technologies',
     heroCtaText: 'View My Work',
     // About section
     aboutTitle: 'About Me',
@@ -20,6 +20,7 @@ export default async function seed() {
       'Com mais de 13 anos de experiência em desenvolvimento de tecnologia, tenho expertise em diversas linguagens de programação, incluindo Java, C#, VB.Net, Delphi e Node.js. Atuei em projetos utilizando metodologias ágeis como SCRUM, utilizando os princípios SOLID de desenvolvimento de software.',
     aboutSkills: [
       'Java',
+      'Go',
       'C#',
       'VB.Net',
       'Delphi',
@@ -33,14 +34,13 @@ export default async function seed() {
       'SQL Server',
       'Docker',
       'GitHub Actions',
-      'Kubernetes',
     ],
-    aboutExperience: '13+ years',
+    aboutExperience: '13+ anos',
     aboutImage: null,
     // Contact section
-    contactTitle: 'Get In Touch',
+    contactTitle: 'Entre em contato',
     contactSubtitle:
-      "I'd love to hear from you. Send me a message and I'll respond as soon as possible.",
+      'Me envie uma mensagem e responderei o mais breve possível.',
     contactEmail: 'contato@victorhugo.info',
     contactLinkedin: 'https://www.linkedin.com/in/victorhdchagas/',
     contactGithub: 'https://github.com/victorhdchagas',
