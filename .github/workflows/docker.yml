@@ -49,11 +49,13 @@ jobs:
       - name: Trigger Jenkins Deployment
         run: |
           # A URL publica que o Cloudflare Tunnel roteia para seu Jenkins
+          TAGS="${{ steps.meta.outputs.tags }}"
+          DEPLOY_TAG=$(echo "$TAGS" | grep -oE 'main-[0-9a-f]{7}' | head -n 1)
           JENKINS_URL="https://jenkins.victorhugo.info/generic-webhook-trigger/invoke"
 
           echo "Disparando Jenkins Deployment Job..."
 
           # Executa a chamada HTTP POST, passando o token como parâmetro.
-          curl -X POST "${JENKINS_URL}?token=${{ secrets.JENKINS_WEBHOOK_TOKEN }}"
+          curl -X POST "${JENKINS_URL}?token=${{ secrets.JENKINS_WEBHOOK_TOKEN }}&TAG_SHA=${DEPLOY_TAG}""
         env:
           JENKINS_WEBHOOK_TOKEN: ${{ secrets.JENKINS_WEBHOOK_TOKEN }}
