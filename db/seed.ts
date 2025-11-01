@@ -108,7 +108,7 @@ export default async function seed() {
         'Recursos incluem categorização automática de transações, relatórios visuais de gastos, controle de orçamento mensal e sincronização opcional entre dispositivos quando desejado.',
       ],
       images: ['screenshot1.png'],
-      tags: ['React', 'TypeScript', 'IndexedDB', 'PWA'],
+      tags: ['React', 'TypeScript', 'IndexedDB', 'PWA', 'GO'],
       link: 'https://walletr.victorhugo.info',
     },
     {

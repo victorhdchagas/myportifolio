@@ -162,18 +162,6 @@ const url = `https://victorhugo.dev/projects/${slug}`
                   ))
                 }
               </div>
-              {
-                project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="live-demo-btn"
-                  >
-                    Live Demo
-                  </a>
-                )
-              }
             </div>
           </div>
 
@@ -214,7 +202,7 @@ const url = `https://victorhugo.dev/projects/${slug}`
                           rel="noopener noreferrer"
                           class="live-demo-link"
                         >
-                          Live Demo <span class="arrow">→</span>
+                          Acessar <span class="arrow">→</span>
                         </a>
                       )
                     }
@@ -308,6 +296,10 @@ const url = `https://victorhugo.dev/projects/${slug}`
           if (image.src.includes('product_placeholder.jpg')) {
             image.setAttribute('data-loaded', 'true')
             return
+          }
+
+          if (Array.from(images).indexOf(image) < 3) {
+            image.loading = 'eager'
           }
 
           // Handle image load
