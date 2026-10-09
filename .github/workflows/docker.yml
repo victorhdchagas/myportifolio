@@ -46,28 +46,13 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - name: Trigger Jenkins Deployment
+
+      # Deploy: MANUAL. O antigo passo que acionava o Jenkins foi removido
+      # (o Jenkins não existe mais). A imagem multi-arch fica publicada no
+      # Docker Hub; a atualização em produção é feita à mão no CasaOS do
+      # Raspberry, trocando a tag do app para `main-<sha>` (a tag do commit).
+      - name: Deployment tag (informational)
         run: |
-          # A URL publica que o Cloudflare Tunnel roteia para seu Jenkins
-          TAGS="${{ steps.meta.outputs.tags }}"
-
-          # 1. Encontra a linha que tem o formato de tag SHA (main-).
-          # 2. Usa 'awk' para imprimir o último campo após o delimitador ':'.
-          # 3. 'head -n 1' garante uma única tag.
-          DEPLOY_TAG=$(echo "$TAGS" | grep 'main-' | awk -F: '{print $NF}' | head -n 1)
-
-          if [ -z "$DEPLOY_TAG" ]; then
-            echo "::error title=Extração de Tag Falhou::Não foi possível extrair a tag SHA do commit. O Deployment não será acionado."
-            echo "Tags geradas: $TAGS"
-            # O exit 1 garante que o Action falhe se a variável crítica não for capturada
-            exit 1 
-          fi
-
-          JENKINS_URL="https://jenkins.victorhugo.info/generic-webhook-trigger/invoke"
-
-          echo "Disparando Jenkins Deployment Job com TAG: $DEPLOY_TAG"
-
-          # Executa a chamada HTTP POST, passando o token e a TAG_SHA
-          curl -X POST "${JENKINS_URL}?token=${{ secrets.JENKINS_WEBHOOK_TOKEN }}&TAG_SHA=${DEPLOY_TAG}"
-        env:
-          JENKINS_WEBHOOK_TOKEN: ${{ secrets.JENKINS_WEBHOOK_TOKEN }}
+          SHA_TAG=$(echo "${{ steps.meta.outputs.tags }}" | grep 'main-' | awk -F: '{print $NF}' | head -n 1)
+          echo "Imagem publicada. Tag para o CasaOS: ${SHA_TAG}"
+          echo "### Imagem publicada — tag para o CasaOS: \`${SHA_TAG}\`" >> "$GITHUB_STEP_SUMMARY"
