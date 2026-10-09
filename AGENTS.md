@@ -35,15 +35,15 @@ src/tests/     → Mirror component structure
 ```
 
 ## Environment Variables
-- **EMAIL_USER**: Gmail address for contact form emails
-- **EMAIL_PASS**: Gmail app password (not regular password)
-- Create `.env` file based on `.env.example`
+- `SITE_URL` (opcional): URL base usada pelo `scripts/generate-sitemap.js`
+  (padrão `https://victorhugo.info`)
+- As chaves sensíveis do CI (Docker Hub, Nostr) vivem nos secrets do GitHub
 
-## Contact Form
-- API endpoint: `POST /api/contact`
-- Sends emails using Nodemailer with Gmail
-- Client-side form validation and submission handling
-- Success/error messages displayed to user
+## Contact
+- O formulário de contato foi **removido** (2026-10): a seção expõe apenas
+  links diretos (e-mail, LinkedIn, GitHub, Nostr), vindos do banco.
+- Histórico: já existiu `POST /api/contact` (Nodemailer/Gmail) e depois
+  EmailJS client-side; ambos saíram junto com o formulário.
 
 ## Nostr Verification
 - NIP-05 verification endpoint: `/.well-known/nostr.json`

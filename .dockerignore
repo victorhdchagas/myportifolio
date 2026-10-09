@@ -1,0 +1,11 @@
+# Contexto de build enxuto — só o que o build da imagem precisa.
+node_modules
+dist
+.git
+.vscode
+.env
+.env.*
+*.log
+*.tsbuildinfo
+Dockerfile
+.dockerignore

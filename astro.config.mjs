@@ -2,12 +2,11 @@
 import { defineConfig } from 'astro/config';
 import db from '@astrojs/db';
 import icon from 'astro-icon';
-import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://victorhugo.info',
-  integrations: [db(), icon(), mdx()],
+  integrations: [db(), icon()],
   image: {
     // Enable image optimization
     service: {
