@@ -16,11 +16,33 @@ const { brand = 'VHT' } = Astro.props
     </div>
 
     <div class="nav-links">
-      <a href="/#hero" class="nav-link">Home</a>
-      <a href="/#projects" class="nav-link">Projects</a>
-      <a href="/adrift-notes" class="nav-link">Adrift Notes</a>
-      <a href="/#about" class="nav-link">About</a>
-      <a href="/#contact" class="nav-link">Contact</a>
+      <a
+        href="/#hero"
+        class="nav-link"
+        data-i18n-pt="Início"
+        data-i18n-en="Home">Início</a
+      >
+      <a
+        href="/#projects"
+        class="nav-link"
+        data-i18n-pt="Projetos"
+        data-i18n-en="Projects">Projetos</a
+      >
+      <a
+        href="/adrift-notes"
+        class="nav-link"
+        data-i18n-pt="Notas"
+        data-i18n-en="Adrift Notes">Notas</a
+      >
+      <a href="/#about" class="nav-link" data-i18n-pt="Sobre" data-i18n-en="About"
+        >Sobre</a
+      >
+      <a
+        href="/#contact"
+        class="nav-link"
+        data-i18n-pt="Contato"
+        data-i18n-en="Contact">Contato</a
+      >
     </div>
 
     <div class="nav-actions">
@@ -138,6 +160,8 @@ const { brand = 'VHT' } = Astro.props
 </style>
 
 <script>
+  import { applyLanguage } from '../../scripts/i18n.js'
+
   // Apply theme on page load (including view transitions)
   function applyTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light'
@@ -157,8 +181,14 @@ const { brand = 'VHT' } = Astro.props
   // Apply theme on initial load
   applyTheme()
 
-  // Apply theme on view transition page loads
-  document.addEventListener('astro:page-load', applyTheme)
+  // Apply the browser language to the navigation labels
+  applyLanguage()
+
+  // Re-apply on view transition page loads
+  document.addEventListener('astro:page-load', () => {
+    applyTheme()
+    applyLanguage()
+  })
 
   // Smooth scrolling for navigation links
   document.addEventListener('DOMContentLoaded', () => {

@@ -167,5 +167,35 @@ export default async function seed() {
       tags: ['C#', 'Cordova/PhoneGap', 'SQL Server', 'jQuery'],
       link: null,
     },
+    {
+      id: 6,
+      title: 'Publiquei',
+      smallDescription:
+        'Plataforma SaaS multi-tenant para publicações e eventos com dupla entrega: presença no Google e nos buscadores (SEO) e descoberta por IAs como ChatGPT e Perplexity. Publique uma vez e apareça nos dois mundos.',
+      fullDescription: [
+        'Publiquei é uma plataforma SaaS multi-tenant criada para publicações e eventos que precisam ser encontrados tanto por buscadores tradicionais quanto por assistentes de IA. O lema resume a proposta: "Publique uma vez. Apareça no Google e nas IAs."',
+        'A plataforma entrega o mesmo conteúdo em dois canais: na Web, com SEO automático (JSON-LD, Open Graph e sitemap) para Google, Bing e redes sociais; e na camada de IA, expondo o conteúdo em text/markdown e application/json (RAG-friendly) para LLMs e ferramentas com busca em tempo real, como Perplexity e ChatGPT.',
+        'Um dos diferenciais é a content negotiation no header Accept: o servidor devolve text/html para navegadores e crawlers, ou text/markdown e application/json para agentes de IA e integrações, tudo a partir do mesmo endereço.',
+        'Nos bastidores, o backend é uma API REST escrita em Go com Gin e GORM sobre PostgreSQL, usando Row-Level Security para garantir o isolamento dos dados entre tenants. O front-end público é gerado com Astro (SSG/SSR) em páginas leves e sem JavaScript, e o painel administrativo é uma SPA em React.',
+        'Cada tenant recebe seu próprio subdomínio (ex.: escola.publiquei.online) ou domínio personalizado, com llms.txt, sitemap.xml e sitemap-llms.xml gerados automaticamente para acelerar a descoberta por crawlers de IA.',
+        'O produto é oferecido em modelo de assinatura, com plano gratuito para começar (sem cartão de crédito), plano Pro com publicações ilimitadas e domínio personalizado, e plano Scale com acesso à API e marca própria.',
+        'A proposta é simples: indexação dos conteúdos em até 48h e toda a configuração de SEO técnico — JSON-LD, Open Graph, dados estruturados e sitemaps — sem exigir conhecimento técnico do usuário.',
+      ],
+      images: ['screenshot1.png'],
+      tags: [
+        'Go',
+        'Gin',
+        'GORM',
+        'PostgreSQL',
+        'Astro',
+        'TypeScript',
+        'SEO',
+        'Multi-tenancy',
+        'Content Negotiation',
+        'LLM/RAG',
+        'SaaS',
+      ],
+      link: 'https://publiquei.online',
+    },
   ])
 }

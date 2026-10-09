@@ -20,8 +20,10 @@ export interface Props {
 
 const { id } = Astro.props
 
-// Query projects from database
-const dbProjects = await db.select().from(ProjectsTable)
+// Query projects from database (most recent first)
+const dbProjects = (await db.select().from(ProjectsTable)).sort(
+  (a, b) => b.id - a.id,
+)
 const projects: Project[] = dbProjects.map((project: any) => ({
   id: project.id.toString(),
   title: project.title,

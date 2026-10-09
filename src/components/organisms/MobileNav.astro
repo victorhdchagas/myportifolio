@@ -4,25 +4,57 @@ import { Icon } from 'astro-icon/components'
 ---
 
 <nav class="mobile-nav">
-  <a href="/#hero" class="nav-item" title="Home">
+  <a
+    href="/#hero"
+    class="nav-item"
+    title="Início"
+    data-i18n-title-pt="Início"
+    data-i18n-title-en="Home"
+  >
     <span class="icon"> <Icon name="mdi:home" /></span>
-    <span class="label">Home</span>
+    <span class="label" data-i18n-pt="Início" data-i18n-en="Home">Início</span>
   </a>
-  <a href="/#projects" class="nav-item" title="Projects">
+  <a
+    href="/#projects"
+    class="nav-item"
+    title="Projetos"
+    data-i18n-title-pt="Projetos"
+    data-i18n-title-en="Projects"
+  >
     <span class="icon"> <Icon name="mdi:robot-happy" /></span>
-    <span class="label">Projects</span>
+    <span class="label" data-i18n-pt="Projetos" data-i18n-en="Projects"
+      >Projetos</span
+    >
   </a>
-  <a href="/adrift-notes" class="nav-item" title="Adrift Notes">
+  <a
+    href="/adrift-notes"
+    class="nav-item"
+    title="Notas"
+    data-i18n-title-pt="Notas"
+    data-i18n-title-en="Adrift Notes"
+  >
     <span class="icon"> <Icon name="streamline-freehand:notes-quill" /></span>
-    <span class="label">Notes</span>
+    <span class="label" data-i18n-pt="Notas" data-i18n-en="Notes">Notas</span>
   </a>
-  <a href="/#about" class="nav-item" title="About">
+  <a
+    href="/#about"
+    class="nav-item"
+    title="Sobre"
+    data-i18n-title-pt="Sobre"
+    data-i18n-title-en="About"
+  >
     <span class="icon"> <Icon name="mdi:info" /></span>
-    <span class="label">About</span>
+    <span class="label" data-i18n-pt="Sobre" data-i18n-en="About">Sobre</span>
   </a>
-  <a href="/#contact" class="nav-item" title="Contact">
+  <a
+    href="/#contact"
+    class="nav-item"
+    title="Contato"
+    data-i18n-title-pt="Contato"
+    data-i18n-title-en="Contact"
+  >
     <span class="icon"> <Icon name="mdi:email" /></span>
-    <span class="label">Contact</span>
+    <span class="label" data-i18n-pt="Contato" data-i18n-en="Contact">Contato</span>
   </a>
 </nav>
 
@@ -91,3 +123,10 @@ import { Icon } from 'astro-icon/components'
     border-top-color: rgba(120, 113, 108, 0.2);
   }
 </style>
+
+<script>
+  import { applyLanguage } from '../../scripts/i18n.js'
+
+  applyLanguage()
+  document.addEventListener('astro:page-load', applyLanguage)
+</script>
