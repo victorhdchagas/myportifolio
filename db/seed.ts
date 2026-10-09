@@ -197,5 +197,33 @@ export default async function seed() {
       ],
       link: 'https://publiquei.online',
     },
+    {
+      id: 7,
+      title: 'TapIn',
+      smallDescription:
+        'TapIn aproxima comércios locais dos clientes por notificações opt-in. O cliente escaneia um QR Code, monta seu catálogo de produtos favoritos e só recebe aviso do que ele mesmo escolheu. "O sinal que você pediu."',
+      fullDescription: [
+        'TapIn é um app que conecta comércios locais — padarias, açougues, feiras — aos clientes por meio de notificações push opt-in. O lema resume a proposta: "O sinal que você pediu." O nome nasce do domínio comtapin, a variação disponível de "TapIn".',
+        'O fluxo é simples e sem atrito: o cliente escaneia um QR Code no balcão da loja, navega pelo catálogo de produtos e escolhe quais quer acompanhar. Quando o produto fica pronto, o comerciante toca em "Avisar" e o aviso chega apenas para quem pediu — sem cadastro, sem nome, sem e-mail, sem CPF.',
+        'A privacidade é o pilar do produto: a identidade do cliente é o próprio aparelho (o token de push), então não há coleta de dado pessoal. Não existe spam nem anúncio — a notificação é sempre uma escolha explícita do usuário, que ainda pode definir janelas de horário para ser avisado (ex.: só de manhã, ou só no fim de semana).',
+        'O mesmo app tem dois modos. No modo cliente (anônimo) a pessoa segue lojas e produtos, recebe os avisos e responde "Indo!". No modo dono (login por telefone + código) o comerciante gerencia o catálogo, categorias e preços, dispara os avisos e acompanha estatísticas de quantos clientes estão a caminho.',
+        'Nos bastidores, o backend é uma API REST em Go com Gin e PostgreSQL, servindo também o PWA embutido em um binário único. O app mobile é construído com Expo (React Native) e o push usa Firebase Cloud Messaging no nativo e Web Push (RFC 8030) no PWA instalado.',
+        'O cliente funciona offline-first: o catálogo fica em cache e as ações (seguir um produto, marcar "Indo!") entram numa fila que sincroniza assim que a conexão volta. O projeto nasceu para validar com uma padaria real e medir a conversão de intenção de compra.',
+      ],
+      images: ['screenshot1.png'],
+      tags: [
+        'Go',
+        'Gin',
+        'PostgreSQL',
+        'Expo',
+        'React Native',
+        'React',
+        'TypeScript',
+        'PWA',
+        'FCM',
+        'Web Push',
+      ],
+      link: 'https://comtapin.publiquei.online',
+    },
   ])
 }
