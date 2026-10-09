@@ -60,7 +60,12 @@ const { project } = Astro.props
 const title = `${project.title} - Victor Hugo Portfolio`
 const description = project.smallDescription
 const slug = project.title.toLowerCase().replace(/\s+/g, '-')
-const url = `https://victorhugo.dev/projects/${slug}`
+const url = `https://victorhugo.info/projects/${slug}`
+const ogImage = `https://victorhugo.info${
+  project.images.length > 0
+    ? `/${slug}/${project.images[0]}`
+    : '/product_placeholder.jpg'
+}`
 ---
 
 <html lang="pt-BR">
@@ -75,17 +80,21 @@ const url = `https://victorhugo.dev/projects/${slug}`
     <meta name="description" content={description} />
     <meta name="keywords" content={project.tags.join(', ')} />
 
+    <link rel="canonical" href={url} />
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="article" />
     <meta property="og:url" content={url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
